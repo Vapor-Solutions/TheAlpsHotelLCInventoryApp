@@ -10,4 +10,16 @@ class Unit extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+
+    public function unitType()
+    {
+        return $this->belongsTo(UnitType::class);
+    }
+
+
+    public function getEquivalenceAttribute()
+    {
+
+    }
 }

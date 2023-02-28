@@ -19,10 +19,10 @@ class CustomersSeeder extends Seeder
         for ($i = 0; $i < 30; $i++) {
             $customer = new Customer();
             $customer->name = $faker->name;
-            $customer->email = Str::slug($customer->name);
+            $customer->email = Str::slug($customer->name). '@gmail.com';
             $customer->phone_number = $faker->phoneNumber;
             $customer->address = $faker->address;
-            $customer->kra_pin = "A" . random_int(010000000, 9999999999) . $faker->randomLetter;
+            $customer->kra_pin = "A" . random_int(010000000, 9999999999) . Str::upper($faker->randomLetter);
             $customer->save();
         }
     }

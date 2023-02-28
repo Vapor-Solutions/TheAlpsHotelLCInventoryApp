@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('unit_type_id')->constrained();
             $table->string('title');
             $table->string('symbol');
-            $table->float('rate');
+            $table->decimal('rate', 10, 5);
             $table->softDeletes();
             $table->timestamps();
         });

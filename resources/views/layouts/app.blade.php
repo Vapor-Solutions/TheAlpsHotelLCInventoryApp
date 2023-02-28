@@ -22,8 +22,10 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
+
     <!-- Styles -->
     @livewireStyles
+    @stack('styles')
 </head>
 {{-- New App Layout --}}
 
@@ -108,6 +110,37 @@
     @stack('modals')
 
     @livewireScripts
+    @stack('scripts')
+
+
+    <script>
+        Livewire.on('done', (e) => {
+            if (e.success) {
+                Toast.fire({
+                    icon: 'success',
+                    text: e.success
+                })
+            }
+            if (e.warning) {
+                Toast.fire({
+                    icon: 'warning',
+                    text: e.warning
+                })
+            }
+            if (e.info) {
+                Toast.fire({
+                    icon: 'info',
+                    text: e.info
+                })
+            }
+            if (e.danger) {
+                Toast.fire({
+                    icon: 'danger',
+                    text: e.danger
+                })
+            }
+        })
+    </script>
 
 </body>
 

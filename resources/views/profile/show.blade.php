@@ -29,7 +29,7 @@
                 <x-section-border />
             @endif
 
-            <div class="mt-10 sm:mt-0">
+            <div class="mt-5 mt-md-0">
                 @livewire('profile.logout-other-browser-sessions-form')
             </div>
 

@@ -19,10 +19,10 @@ class SuppliersSeeder extends Seeder
         for ($i = 0; $i < 30; $i++) {
             $supplier = new Supplier();
             $supplier->name = $faker->name;
-            $supplier->email = Str::slug($supplier->name);
+            $supplier->email = Str::slug($supplier->name) . '@gmail.com';
             $supplier->phone_number = $faker->phoneNumber;
             $supplier->address = $faker->address;
-            $supplier->kra_pin = "A" . random_int(010000000, 9999999999) . $faker->randomLetter;
+            $supplier->kra_pin = "A" . random_int(010000000, 9999999999) . Str::upper($faker->randomLetter);
             $supplier->save();
         }
     }
