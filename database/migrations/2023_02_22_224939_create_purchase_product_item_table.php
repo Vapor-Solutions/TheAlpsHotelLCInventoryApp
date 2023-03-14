@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('purchase_product_item', function (Blueprint $table) {
             $table->foreignId('purchase_id')->constrained();
-            $table->foreignId('product_item_id')->constrained();
+            $table->foreignId('product_item_id')->unique()->constrained();
             $table->primary(['product_item_id', 'purchase_id']);
-            $table->float('purchase_price');
             $table->timestamps();
         });
     }

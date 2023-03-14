@@ -51,6 +51,12 @@ Route::prefix('admin')->middleware([
         Route::get('/create', Admin\Customers\Create::class)->name('admin.customers.create');
         Route::get('/{id}/edit', Admin\Customers\Edit::class)->name('admin.customers.edit');
     });
+    // Brands
+    Route::prefix('brands')->group(function(){
+        Route::get('/', Admin\Brands\Index::class)->name('admin.brands.index');
+        Route::get('/create', Admin\Brands\Create::class)->name('admin.brands.create');
+        Route::get('/{id}/edit', Admin\Brands\Edit::class)->name('admin.brands.edit');
+    });
     // Suppliers
     Route::prefix('suppliers')->group(function(){
         Route::get('/', Admin\Suppliers\Index::class)->name('admin.suppliers.index');
@@ -74,6 +80,7 @@ Route::prefix('admin')->middleware([
         Route::get('/', Admin\ProductDescriptions\Index::class)->name('admin.product-descriptions.index');
         Route::get('/create', Admin\ProductDescriptions\Create::class)->name('admin.product-descriptions.create');
         Route::get('/{id}/edit', Admin\ProductDescriptions\Edit::class)->name('admin.product-descriptions.edit');
+        Route::get('/{id}/show', Admin\ProductDescriptions\Show::class)->name('admin.product-descriptions.show');
     });
     // Product Items
     Route::prefix('product-items')->group(function(){
@@ -115,11 +122,13 @@ Route::prefix('admin')->middleware([
         Route::get('/', Admin\Purchases\Index::class)->name('admin.purchases.index');
         Route::get('/create', Admin\Purchases\Create::class)->name('admin.purchases.create');
         Route::get('/{id}/edit', Admin\Purchases\Edit::class)->name('admin.purchases.edit');
+        Route::get('/{id}/show', Admin\Purchases\Show::class)->name('admin.purchases.show');
     });
     // Sales
     Route::prefix('sales')->group(function(){
         Route::get('/', Admin\Sales\Index::class)->name('admin.sales.index');
         Route::get('/create', Admin\Sales\Create::class)->name('admin.sales.create');
         Route::get('/{id}/edit', Admin\Sales\Edit::class)->name('admin.sales.edit');
+        Route::get('/{id}/show', Admin\Sales\Show::class)->name('admin.sales.show');
     });
 });

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('purchase_payments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('purchase_order_id')->constrained();
+            $table->foreignId('purchase_id')->constrained();
             $table->foreignId('payment_method_id')->constrained();
             $table->float('amount');
             $table->softDeletes();

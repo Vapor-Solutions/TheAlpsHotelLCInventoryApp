@@ -92,6 +92,23 @@
             </div>
         </div>
     </li>
+    <li class="nav-item {{ request()->routeIs('admin.brands*') ? 'active' : '' }}">
+        <a class="nav-link {{ request()->routeIs('admin.brands*') ? '' : 'collapsed' }}" href="#"
+            data-toggle="collapse" data-target="#collapseBrands" aria-expanded="true" aria-controls="collapseBrands">
+            <i class="fas fa-fw fa-copyright"></i>
+            <span>Brands</span>
+        </a>
+        <div id="collapseBrands" class="collapse {{ request()->routeIs('admin.brands*') ? 'show' : '' }}"
+            aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Options:</h6>
+                <a class="collapse-item {{ request()->routeIs('admin.brands.index') ? 'active' : '' }}"
+                    href="{{ route('admin.brands.index') }}">View Brands</a>
+                <a class="collapse-item {{ request()->routeIs('admin.brands.create') ? 'active' : '' }}"
+                    href="{{ route('admin.brands.create') }}">New Brand</a>
+            </div>
+        </div>
+    </li>
     <li class="nav-item {{ request()->routeIs('admin.product-categories*') ? 'active' : '' }}">
         <a class="nav-link {{ request()->routeIs('admin.product-categories*') ? '' : 'collapsed' }}" href="#"
             data-toggle="collapse" data-target="#collapseproduct-categories" aria-expanded="true"

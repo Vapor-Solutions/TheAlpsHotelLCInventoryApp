@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('sale_product_item', function (Blueprint $table) {
             $table->foreignId('sale_id');
-            $table->foreignId('product_item_id');
+            $table->foreignId('product_item_id')->unique();
             $table->primary(['sale_id', 'product_item_id']);
             $table->float('sale_price');
             $table->timestamps();

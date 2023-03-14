@@ -16,9 +16,12 @@ class DatabaseSeeder extends Seeder
             CustomersSeeder::class,
             SuppliersSeeder::class,
             UnitsSeeder::class,
+            BrandsSeeder::class,
             ProductCategoriesSeeder::class,
             ProductDescriptionsSeeder::class,
             ProductItemsSeeder::class,
+            PurchasesSeeder::class,
+            SalesSeeder::class,
         ]);
     }
 }

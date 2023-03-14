@@ -33,11 +33,14 @@
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     Total Inventory Value ({{ env('DEFAULT_CURRENCY') }})</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                    <sup><small>{{ env('DEFAULT_CURRENCY_SYMBOL') }}</small></sup>{{ number_format($inventory_value, 2) }}</div>
+                                    <x-currency></x-currency>{{ number_format($inventory_value, 2) }}</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-money-bill fa-2x text-gray-300"></i>
                             </div>
+                        </div>
+                        <div class="row mx-3">
+                            <small class="{{ $revenue>0?'text-success':($revenue<0?'text-danger':'text-secondary') }}"><strong>{{ number_format($revenue, 2) }}% from expected value</strong></small>
                         </div>
                     </div>
                 </div>

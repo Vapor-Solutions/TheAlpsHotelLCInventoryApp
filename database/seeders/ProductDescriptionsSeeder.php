@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Brand;
 use App\Models\ProductCategory;
 use App\Models\ProductDescription;
 use App\Models\Unit;
@@ -18,7 +19,7 @@ class ProductDescriptionsSeeder extends Seeder
         $categories = ProductCategory::all();
 
         foreach ($categories as $category) {
-            for ($i = 1; $i <= 10; $i++) {
+            for ($i = 1; $i <= rand(10, 60); $i++) {
                 if ($category->title === 'Food & Beverages') {
                     $name = $this->getFoodName();
                     $description = $this->getFoodDescription($name);
@@ -26,11 +27,11 @@ class ProductDescriptionsSeeder extends Seeder
                 } elseif ($category->title === 'Toiletries') {
                     $name = $this->getToiletryName();
                     $description = $this->getToiletryDescription($name);
-                    $price = rand(5, 20) * 10;
+                    $price = rand(1, 60) * 10;
                 } elseif ($category->title === 'Bedding & Linens') {
                     $name = $this->getBeddingName();
                     $description = $this->getBeddingDescription($name);
-                    $price = rand(10, 50) * 10;
+                    $price = rand(10, 80) * 10;
                 } elseif ($category->title === 'Electronics') {
                     $name = $this->getElectronicName();
                     $description = $this->getElectronicDescription($name);
@@ -43,6 +44,7 @@ class ProductDescriptionsSeeder extends Seeder
 
                 ProductDescription::create([
                     'title' => $name,
+                    'brand_id' => rand(1, count(Brand::all())),
                     'description' => $description,
                     'price' => $price,
                     'product_category_id' => $category->id,
