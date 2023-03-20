@@ -62,7 +62,7 @@
                     </div>
                     <div class="col-md-4 col-6">
                         <div class="mb-3">
-                            <label for="brand" class="form-label">Product Category</label>
+                            <label for="brand" class="form-label">Product Brand</label>
                             <select wire:model="product_description.brand_id" class="form-control" name="brand" id="brand">
                                 <option selected>Select one</option>
                                 @foreach (App\Models\Brand::all() as $brand)

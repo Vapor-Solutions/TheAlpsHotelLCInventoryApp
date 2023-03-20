@@ -19,6 +19,8 @@
                                 <th>Purchase Date</th>
                                 <th>Number of Products</th>
                                 <th>Total Spent</th>
+                                <th>Total Paid</th>
+                                <th>Balance</th>
                                 <th class="text-center">Actions</th>
                             </tr>
                         </thead>
@@ -30,6 +32,13 @@
                                     <td>{{ count($purchase->productItems) }}</td>
                                     <td>
                                         <x-currency></x-currency>{{ number_format($purchase->total_cost, 2) }}
+                                    </td>
+                                    <td>
+                                        <x-currency></x-currency>
+                                        {{ number_format($purchase->total_cost - $purchase->balance, 2) }}
+                                    </td>
+                                    <td class=" @if ($purchase->balance > 0) text-danger @endif">
+                                        <x-currency></x-currency>{{ number_format($purchase->balance, 2) }}
                                     </td>
                                     <td>
                                         <div class="d-flex flex-row justify-content-center">

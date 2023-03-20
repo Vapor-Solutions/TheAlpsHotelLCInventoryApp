@@ -15,6 +15,7 @@
                         <th>ID</th>
                         <th>SKU Number</th>
                         <th>Date Added</th>
+                        <th>status</th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
@@ -23,6 +24,7 @@
                             <td scope="row">{{ $item->id }}</td>
                             <td>{{ $item->sku_number }}</td>
                             <td>{{ Carbon\Carbon::parse($item->created_at)->format('jS \of F, Y') }}</td>
+                            <td>{!! $item->is_sold?'<h3 class="text-danger">SOLD</h3>':'<h3 class="text-success">IN STOCK</h3>' !!}</td>
                         </tr>
                     @endforeach
 

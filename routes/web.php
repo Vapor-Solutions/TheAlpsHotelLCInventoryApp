@@ -63,6 +63,12 @@ Route::prefix('admin')->middleware([
         Route::get('/create', Admin\Suppliers\Create::class)->name('admin.suppliers.create');
         Route::get('/{id}/edit', Admin\Suppliers\Edit::class)->name('admin.suppliers.edit');
     });
+    // UnitTypes
+    Route::prefix('unit-types')->group(function(){
+        Route::get('/', Admin\UnitTypes\Index::class)->name('admin.unit-types.index');
+        Route::get('/create', Admin\UnitTypes\Create::class)->name('admin.unit-types.create');
+        Route::get('/{id}/edit', Admin\UnitTypes\Edit::class)->name('admin.unit-types.edit');
+    });
     // Units
     Route::prefix('units')->group(function(){
         Route::get('/', Admin\Units\Index::class)->name('admin.units.index');
@@ -94,12 +100,14 @@ Route::prefix('admin')->middleware([
         Route::get('/create', Admin\PaymentMethods\Create::class)->name('admin.payment-methods.create');
         Route::get('/{id}/edit', Admin\PaymentMethods\Edit::class)->name('admin.payment-methods.edit');
     });
-    // Payments
-    Route::prefix('payments')->group(function(){
-        Route::get('/', Admin\Payments\Index::class)->name('admin.payments.index');
-        Route::get('/create', Admin\Payments\Create::class)->name('admin.payments.create');
-        Route::get('/{id}/edit', Admin\Payments\Edit::class)->name('admin.payments.edit');
+    // Sales Payments
+    Route::prefix('sales-payments')->group(function(){
+        Route::get('/', Admin\SalesPayments\Index::class)->name('admin.sales-payments.index');
+        Route::get('/create', Admin\SalesPayments\Create::class)->name('admin.sales-payments.create');
+        Route::get('/{id}/edit', Admin\SalesPayments\Edit::class)->name('admin.sales-payments.edit');
     });
+
+    // Purchase Payments
     Route::prefix('purchase-payments')->group(function(){
         Route::get('/', Admin\PurchasePayments\Index::class)->name('admin.purchase-payments.index');
         Route::get('/create', Admin\PurchasePayments\Create::class)->name('admin.purchase-payments.create');

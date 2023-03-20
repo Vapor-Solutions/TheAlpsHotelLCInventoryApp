@@ -28,7 +28,17 @@ class Index extends Component
 
     public function delete($id)
     {
-        ProductDescription::find($id)->delete();
+        // ProductDescription::find($id)->delete();
+        $desc =  ProductDescription::find($id);
+
+        if ($desc->productItems->count() > 0) {
+            $this->emit('done', [
+                'warning' => "You cannot Delete a Product Description that has Existing Items attached "
+            ]);
+            return;
+        }
+
+        $desc->delete();
 
         $this->emit('done', [
             'success'=>'Successfully Deleted the Product Description'

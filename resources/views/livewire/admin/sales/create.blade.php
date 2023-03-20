@@ -45,7 +45,7 @@
                                         <option selected>Select one</option>
 
                                         @foreach ($productDescriptions as $product)
-                                            <option value="{{ $product->id }}">{{ $product->title }} -
+                                            <option @if(!$product->available_items)disabled @endif value="{{ $product->id }}">{{ $product->title }} -
                                                 {{ $product->quantity . $product->unit->symbol }} ({{ $product->available_items }} Available)</option>
                                         @endforeach
                                     </select>

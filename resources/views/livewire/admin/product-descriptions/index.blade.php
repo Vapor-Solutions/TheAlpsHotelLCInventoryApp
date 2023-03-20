@@ -24,7 +24,7 @@
                                 <th>Description</th>
                                 <th>Unit Size</th>
                                 <th>Unit Price</th>
-                                <th>No. of Units</th>
+                                <th>No. of Units Available</th>
                                 <th>Estimated Value</th>
                                 <th>Actual Value</th>
                                 <th class="text-center">Actions</th>
@@ -50,7 +50,7 @@
                                     <td>{{ $description->description }}</td>
                                     <td>{{ $description->quantity . ' ' . $description->unit->symbol }}</td>
                                     <td>KES {{ number_format($description->price, 2) }}</td>
-                                    <td>{{ count($description->productItems) }}</td>
+                                    <td>{{ $description->available_items }}</td>
                                     <td>KES {{ number_format($description->total_value, 2) }}</td>
                                     <td>KES {{ number_format($description->actual_value, 2) }}</td>
                                     <td>

@@ -1,12 +1,12 @@
 <div>
     <div class="container-fluid">
         <x-page-heading>
-            Purchases List
+            Sales List
         </x-page-heading>
 
         <div class="card my-5 shadow-sm">
             <div class="card-header">
-                <h5>List of Purchases Made</h5>
+                <h5>List of Sales Made</h5>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -19,6 +19,8 @@
                                 <th>Purchase Date</th>
                                 <th>Number of Products</th>
                                 <th>Total Spent</th>
+                                <th>Total Paid</th>
+                                <th>Balance</th>
                                 <th class="text-center">Actions</th>
                             </tr>
                         </thead>
@@ -30,6 +32,13 @@
                                     <td>{{ count($sale->productItems) }}</td>
                                     <td>
                                         <x-currency></x-currency>{{ number_format($sale->total_cost, 2) }}
+                                    </td>
+                                    <td>
+                                        <x-currency></x-currency>
+                                        {{ number_format($sale->total_cost - $sale->balance, 2) }}
+                                    </td>
+                                    <td>
+                                        <x-currency></x-currency>{{ number_format($sale->balance, 2) }}
                                     </td>
                                     <td>
                                         <div class="d-flex flex-row justify-content-center">

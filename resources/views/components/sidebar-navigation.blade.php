@@ -75,6 +75,23 @@
         Inventory Management
     </div>
 
+    <li class="nav-item {{ request()->routeIs('admin.unit-types*') ? 'active' : '' }}">
+        <a class="nav-link {{ request()->routeIs('admin.unit-types*') ? '' : 'collapsed' }}" href="#"
+            data-toggle="collapse" data-target="#collapseUnitTypes" aria-expanded="true" aria-controls="collapseUnitTypes">
+            <i class="fas fa-fw fa-weight"></i>
+            <span>Units Types</span>
+        </a>
+        <div id="collapseUnitTypes" class="collapse {{ request()->routeIs('admin.unit-types*') ? 'show' : '' }}"
+            aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Options:</h6>
+                <a class="collapse-item {{ request()->routeIs('admin.unit-types.index') ? 'active' : '' }}"
+                    href="{{ route('admin.unit-types.index') }}">View Unit Types</a>
+                <a class="collapse-item {{ request()->routeIs('admin.unit-types.create') ? 'active' : '' }}"
+                    href="{{ route('admin.unit-types.create') }}">New Unit Type</a>
+            </div>
+        </div>
+    </li>
     <li class="nav-item {{ request()->routeIs('admin.units*') ? 'active' : '' }}">
         <a class="nav-link {{ request()->routeIs('admin.units*') ? '' : 'collapsed' }}" href="#"
             data-toggle="collapse" data-target="#collapseUnits" aria-expanded="true" aria-controls="collapseUnits">
@@ -165,13 +182,13 @@
             </div>
         </div>
     </li>
-    <li class="nav-item {{ request()->routeIs('admin.sales*') ? 'active' : '' }}">
-        <a class="nav-link {{ request()->routeIs('admin.sales*') ? '' : 'collapsed' }}" href="#"
+    <li class="nav-item {{ request()->routeIs('admin.sales.*') ? 'active' : '' }}">
+        <a class="nav-link {{ request()->routeIs('admin.sales.*') ? '' : 'collapsed' }}" href="#"
             data-toggle="collapse" data-target="#collapsesales" aria-expanded="true" aria-controls="collapsesales">
             <i class="fas fa-fw fa-cash-register"></i>
             <span>Sales</span>
         </a>
-        <div id="collapsesales" class="collapse {{ request()->routeIs('admin.sales*') ? 'show' : '' }}"
+        <div id="collapsesales" class="collapse {{ request()->routeIs('admin.sales.*') ? 'show' : '' }}"
             aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Options:</h6>
@@ -244,20 +261,20 @@
         </div>
     </li>
 
-    <li class="nav-item {{ request()->routeIs('admin.payments*') ? 'active' : '' }}">
-        <a class="nav-link {{ request()->routeIs('admin.payments*') ? '' : 'collapsed' }}" href="#"
+    <li class="nav-item {{ request()->routeIs('admin.sales-payments*') ? 'active' : '' }}">
+        <a class="nav-link {{ request()->routeIs('admin.sales-payments*') ? '' : 'collapsed' }}" href="#"
             data-toggle="collapse" data-target="#collapsepayments" aria-expanded="true" aria-controls="collapsepayments">
             <i class="fas fa-fw fa-money-bill"></i>
             <span>Sales Payments</span>
         </a>
-        <div id="collapsepayments" class="collapse {{ request()->routeIs('admin.payments*') ? 'show' : '' }}"
+        <div id="collapsepayments" class="collapse {{ request()->routeIs('admin.sales-payments*') ? 'show' : '' }}"
             aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Options:</h6>
-                <a class="collapse-item {{ request()->routeIs('admin.payments.index') ? 'active' : '' }}"
-                    href="{{ route('admin.payments.index') }}">View Payments</a>
-                <a class="collapse-item {{ request()->routeIs('admin.payments.create') ? 'active' : '' }}"
-                    href="{{ route('admin.payments.create') }}">New Sales Payment</a>
+                <a class="collapse-item {{ request()->routeIs('admin.sales-payments.index') ? 'active' : '' }}"
+                    href="{{ route('admin.sales-payments.index') }}">View Payments</a>
+                <a class="collapse-item {{ request()->routeIs('admin.sales-payments.create') ? 'active' : '' }}"
+                    href="{{ route('admin.sales-payments.create') }}">New Sales Payment</a>
             </div>
         </div>
     </li>

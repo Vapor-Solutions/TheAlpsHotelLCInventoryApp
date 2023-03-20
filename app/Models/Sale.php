@@ -30,4 +30,22 @@ class Sale extends Model
     {
         return $this->belongsTo(Customer::class);
     }
+
+
+    public function payments()
+    {
+        return $this->hasMany(SalesPayment::class);
+    }
+
+    public function getBalanceAttribute()
+    {
+        $balance =  $this->total_cost;
+
+        foreach ($this->payments as $payment) {
+            $balance-=$payment->amount;
+        }
+
+        return $balance;
+    }
+
 }

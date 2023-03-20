@@ -21,7 +21,7 @@ class SalesSeeder extends Seeder
 
         $faker = Factory::create();
 
-        for ($i = 0; $i < 15; $i++) {
+        for ($i = 0; $i < 35; $i++) {
             $sale = new Sale();
             $sale->customer_id = rand(1, Customer::count());
             $sale->sale_date = $faker->dateTimeBetween('-121 days');
@@ -37,6 +37,9 @@ class SalesSeeder extends Seeder
                     ]);
                     // Store Sale Price
                 }
+            }
+            if (count($sale->productItems) == 0){
+                $sale->delete();
             }
         }
     }

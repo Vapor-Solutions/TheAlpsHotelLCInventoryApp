@@ -9,6 +9,9 @@ class Index extends Component
 {
     public $productCategories;
 
+    protected $listeners = [
+        'done' => 'render'
+    ];
 
     public function mount()
     {
@@ -17,9 +20,18 @@ class Index extends Component
 
     public function delete($id)
     {
-        ProductCategory::find($id)->delete();
+        $cat = ProductCategory::find($id);
+
+        if ($cat->productDescriptions->count() > 0) {
+            $this->emit('done', [
+                'warning' => "You cannot Delete a Category that has Product Descriptions attached "
+            ]);
+            return;
+        }
+
+        $cat->delete();
         $this->emit('done', [
-            'success'=>"Successfully Deleted a Product Category"
+            'success' => "Successfully Deleted a Product Category"
         ]);
     }
 

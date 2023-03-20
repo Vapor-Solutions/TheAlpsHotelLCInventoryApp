@@ -24,7 +24,7 @@ class Dashboard extends Component
             $this->inventory_value += ($product->actual_value);
             $estimate += ($product->price * $product->available_items);
 
-            $this->revenue = (($estimate - $this->inventory_value) / $estimate) * 100;
+            $this->revenue = $estimate != 0 ? (($estimate - $this->inventory_value) / $estimate) * 100 : 0;
         }
     }
     public function render()

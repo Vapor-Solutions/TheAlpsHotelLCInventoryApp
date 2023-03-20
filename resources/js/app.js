@@ -14,7 +14,7 @@ window.Toast = Swal.mixin({
     toast: true,
     position: "top-right",
     timerProgressBar: false,
-    timer: 2500,
+    timer: 5000,
 });
 
 window.Swal = Swal

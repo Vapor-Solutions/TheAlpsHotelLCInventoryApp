@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PurchasePayment extends Model
+class SalesPayment extends Model
 {
     use HasFactory;
 
-    public function purchase()
+    public function sale()
     {
-        return $this->belongsTo(Purchase::class);
+        return $this->belongsTo(Sale::class);
     }
 
 

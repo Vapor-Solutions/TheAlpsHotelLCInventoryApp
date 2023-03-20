@@ -1,23 +1,23 @@
 <?php
 
-namespace App\Http\Livewire\Admin\PurchasePayments;
+namespace App\Http\Livewire\Admin\SalesPayments;
 
+use App\Models\SalesPayment;
 use Livewire\Component;
-use App\Models\PurchasePayment;
 use Livewire\WithPagination;
 
 class Index extends Component
 {
-
     use WithPagination;
 
     protected $paginationTheme = 'bootstrap';
+
     public function render()
     {
         return view(
-            'livewire.admin.purchase-payments.index',
+            'livewire.admin.sales-payments.index',
             [
-                'purchase_payments' => PurchasePayment::orderBy('created_at', 'DESC')->paginate(5)
+                'sales_payments' => SalesPayment::orderBy('created_at', 'DESC')->paginate(5)
             ]
         );
     }

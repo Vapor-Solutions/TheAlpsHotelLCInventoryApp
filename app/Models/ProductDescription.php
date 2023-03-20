@@ -28,7 +28,7 @@ class ProductDescription extends Model
 
     public function productItems()
     {
-        return $this->hasMany(ProductItem::class);
+        return $this->hasMany(ProductItem::class,  'product_description_id','id');
     }
     public function getAvailableItemsAttribute()
     {

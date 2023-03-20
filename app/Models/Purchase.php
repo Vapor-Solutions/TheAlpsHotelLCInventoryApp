@@ -32,4 +32,22 @@ class Purchase extends Model
     {
         return $this->belongsTo(Supplier::class);
     }
+
+
+    public function payments()
+    {
+        return $this->hasMany(PurchasePayment::class);
+    }
+
+    public function getBalanceAttribute()
+    {
+        $balance =  $this->total_cost;
+
+        foreach ($this->payments as $payment) {
+            $balance-=$payment->amount;
+        }
+
+        return $balance;
+    }
+
 }
