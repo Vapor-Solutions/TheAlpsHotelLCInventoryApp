@@ -10,7 +10,6 @@
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Department</th>
-                            <th scope="col">Number of Employees</th>
                             <th scope="col" class="text-center">Actions</th>
                         </tr>
                     </thead>
@@ -19,7 +18,6 @@
                             <tr class="">
                                 <td scope="row">{{ $department->id }}</td>
                                 <td>{{ $department->title }}</td>
-                                <td><strong>{{ count($department->employees) }}</strong> employees</td>
                                 <td class="d-flex flex-row justify-content-center">
                                     <div class="flex-col mx-2">
                                         <a href="{{ route('admin.departments.edit', $department->id) }}"
