@@ -4,9 +4,9 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fab fa-phoenix-framework"></i>
+            <img width="50px" src="/logo_2.png" alt="">
         </div>
-        <div class="sidebar-brand-text mx-3">Ricnel <sup>24-7</sup></div>
+        <div class="sidebar-brand-text mx-3">The Alps Hotel <sup>KCBLC</sup></div>
     </a>
 
     <!-- Divider -->
