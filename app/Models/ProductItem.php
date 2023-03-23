@@ -25,13 +25,13 @@ class ProductItem extends Model
     {
         return $this->belongsToMany(Purchase::class, 'purchase_product_item');
     }
-    public function sales()
+    public function dispatches()
     {
-        return $this->belongsToMany(Sale::class, 'sale_product_item')->withPivot('sale_price');
+        return $this->belongsToMany(Dispatch::class, 'dispatch_product_item');
     }
 
-    public function getIsSoldAttribute()
+    public function getIsDispatchedAttribute()
     {
-        return count($this->sales) > 0;
+        return count($this->dispatches) > 0;
     }
 }

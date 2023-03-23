@@ -1,4 +1,4 @@
-<div>
+<div wire:init="loadStuff">
     <div class="container-fluid">
         <!-- Page Heading -->
         <x-page-heading>
@@ -16,7 +16,12 @@
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     Total Number of Products</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                    {{ number_format(count($products)) }}</div>
+                                    @if ($products)
+                                        {{ number_format(count($products)) }}
+                                    @else
+                                        <div class="spinner-grow" role="status"></div>
+                                    @endif
+                                </div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-box fa-2x text-gray-300"></i>
@@ -33,14 +38,27 @@
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     Total Inventory Value ({{ env('DEFAULT_CURRENCY') }})</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                    <x-currency></x-currency>{{ number_format($inventory_value, 2) }}</div>
+                                    @if ($products)
+                                        <x-currency></x-currency>{{ number_format($inventory_value, 2) }}
+                                    @else
+                                        <div class="spinner-grow" role="status"></div>
+                                    @endif
+
+                                </div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-money-bill fa-2x text-gray-300"></i>
                             </div>
                         </div>
                         <div class="row mx-3">
-                            <small class="{{ $revenue>0?'text-success':($revenue<0?'text-danger':'text-secondary') }}"><strong>{{ number_format($revenue, 2) }}% from expected value</strong></small>
+                            @if ($products)
+                                <small
+                                    class="{{ $revenue > 0 ? 'text-success' : ($revenue < 0 ? 'text-danger' : 'text-secondary') }}"><strong>{{ number_format($revenue, 2) }}%
+                                        from expected value</strong></small>
+
+                            @else
+                                <div class="p-1 my-3 bg-secondary w-75" role="status"></div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -51,9 +69,14 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                    Total No. of Customers</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                    {{ number_format(count($customers)) }}</div>
+                                    Total No. of Departments</div>
+
+                                @if ($products)
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                        {{ number_format(count($departments)) }}</div>
+                                @else
+                                    <div class="spinner-grow" role="status"></div>
+                                @endif
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-users fa-2x text-gray-300"></i>

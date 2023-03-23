@@ -18,7 +18,8 @@ class ProductDescription extends Model
         'description',
         'price',
         'product_category_id',
-        'quantity'
+        'quantity',
+        'available_items'
     ];
 
     public function unit()
@@ -35,7 +36,7 @@ class ProductDescription extends Model
         $total = 0;
 
         foreach ($this->productItems as $item) {
-            if (!$item->is_sold) {
+            if (!$item->is_dispatched) {
                 $total++;
             }
         }

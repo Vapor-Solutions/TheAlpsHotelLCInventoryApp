@@ -48,11 +48,11 @@ Route::prefix('admin')->middleware([
         Route::get('/create', Admin\Users\Create::class)->name('admin.users.create');
         Route::get('/{id}/edit', Admin\Users\Edit::class)->name('admin.users.edit');
     });
-    // Customers
-    Route::prefix('customers')->group(function () {
-        Route::get('/', Admin\Customers\Index::class)->name('admin.customers.index');
-        Route::get('/create', Admin\Customers\Create::class)->name('admin.customers.create');
-        Route::get('/{id}/edit', Admin\Customers\Edit::class)->name('admin.customers.edit');
+    // Departments
+    Route::prefix('departments')->group(function () {
+        Route::get('/', Admin\Departments\Index::class)->name('admin.departments.index');
+        Route::get('/create', Admin\Departments\Create::class)->name('admin.departments.create');
+        Route::get('/{id}/edit', Admin\Departments\Edit::class)->name('admin.departments.edit');
     });
     // Brands
     Route::prefix('brands')->group(function () {
@@ -103,12 +103,12 @@ Route::prefix('admin')->middleware([
         Route::get('/create', Admin\PaymentMethods\Create::class)->name('admin.payment-methods.create');
         Route::get('/{id}/edit', Admin\PaymentMethods\Edit::class)->name('admin.payment-methods.edit');
     });
-    // Sales Payments
-    Route::prefix('sales-payments')->group(function () {
-        Route::get('/', Admin\SalesPayments\Index::class)->name('admin.sales-payments.index');
-        Route::get('/create', Admin\SalesPayments\Create::class)->name('admin.sales-payments.create');
-        Route::get('/{id}/edit', Admin\SalesPayments\Edit::class)->name('admin.sales-payments.edit');
-    });
+    // // Sales Payments
+    // Route::prefix('sales-payments')->group(function () {
+    //     Route::get('/', Admin\SalesPayments\Index::class)->name('admin.sales-payments.index');
+    //     Route::get('/create', Admin\SalesPayments\Create::class)->name('admin.sales-payments.create');
+    //     Route::get('/{id}/edit', Admin\SalesPayments\Edit::class)->name('admin.sales-payments.edit');
+    // });
 
     // Purchase Payments
     Route::prefix('purchase-payments')->group(function () {
@@ -122,19 +122,19 @@ Route::prefix('admin')->middleware([
         Route::get('/create', Admin\Quotations\Create::class)->name('admin.quotations.create');
         Route::get('/{id}/edit', Admin\Quotations\Edit::class)->name('admin.quotations.edit');
     });
-    // Invoices
-    Route::prefix('invoices')->group(function () {
-        Route::get('/', Admin\Invoices\Index::class)->name('admin.invoices.index');
-        Route::get('/create', Admin\Invoices\Create::class)->name('admin.invoices.create');
-        Route::get('/{id}/show', function ($id) {
-            $pdf = Pdf::loadView('documents.invoice', [
-                'invoice' => Invoice::find($id)
-            ]);
+    // // Invoices
+    // Route::prefix('invoices')->group(function () {
+    //     Route::get('/', Admin\Invoices\Index::class)->name('admin.invoices.index');
+    //     Route::get('/create', Admin\Invoices\Create::class)->name('admin.invoices.create');
+    //     Route::get('/{id}/show', function ($id) {
+    //         $pdf = Pdf::loadView('documents.invoice', [
+    //             'invoice' => Invoice::find($id)
+    //         ]);
 
-            $date = Carbon::parse(Invoice::find($id)->created_at)->toDateString();
-            return $pdf->download($date . '-Invoice#' . $id . '.pdf');
-        })->name('admin.invoices.show');
-    });
+    //         $date = Carbon::parse(Invoice::find($id)->created_at)->toDateString();
+    //         return $pdf->download($date . '-Invoice#' . $id . '.pdf');
+    //     })->name('admin.invoices.show');
+    // });
     // Purchases
     Route::prefix('purchases')->group(function () {
         Route::get('/', Admin\Purchases\Index::class)->name('admin.purchases.index');
@@ -142,11 +142,18 @@ Route::prefix('admin')->middleware([
         Route::get('/{id}/edit', Admin\Purchases\Edit::class)->name('admin.purchases.edit');
         Route::get('/{id}/show', Admin\Purchases\Show::class)->name('admin.purchases.show');
     });
-    // Sales
-    Route::prefix('sales')->group(function () {
-        Route::get('/', Admin\Sales\Index::class)->name('admin.sales.index');
-        Route::get('/create', Admin\Sales\Create::class)->name('admin.sales.create');
-        Route::get('/{id}/edit', Admin\Sales\Edit::class)->name('admin.sales.edit');
-        Route::get('/{id}/show', Admin\Sales\Show::class)->name('admin.sales.show');
+    // // Sales
+    // Route::prefix('sales')->group(function () {
+    //     Route::get('/', Admin\Sales\Index::class)->name('admin.sales.index');
+    //     Route::get('/create', Admin\Sales\Create::class)->name('admin.sales.create');
+    //     Route::get('/{id}/edit', Admin\Sales\Edit::class)->name('admin.sales.edit');
+    //     Route::get('/{id}/show', Admin\Sales\Show::class)->name('admin.sales.show');
+    // });
+    // Dispatches
+    Route::prefix('dispatches')->group(function () {
+        Route::get('/', Admin\Dispatches\Index::class)->name('admin.dispatches.index');
+        Route::get('/create', Admin\Dispatches\Create::class)->name('admin.dispatches.create');
+        Route::get('/{id}/edit', Admin\Dispatches\Edit::class)->name('admin.dispatches.edit');
+        Route::get('/{id}/show', Admin\Dispatches\Show::class)->name('admin.dispatches.show');
     });
 });

@@ -2,22 +2,25 @@
 
 namespace App\Http\Livewire\Admin;
 
-use App\Models\Customer;
+use App\Models\Department;
 use App\Models\ProductDescription;
 use App\Models\ProductItem;
 use Livewire\Component;
 
 class Dashboard extends Component
 {
-    public $products;
-    public $customers;
+    public $products = [];
+    public $departments = [];
     public $inventory_value = 0;
-    public $revenue;
+    public $revenue = 0;
 
-    public function mount()
+
+    public $readyToLoad = false;
+
+    public function loadStuff()
     {
         $this->products = ProductDescription::all();
-        $this->customers = Customer::all();
+        $this->departments = Department::all();
 
         $estimate = 0;
         foreach ($this->products as $product) {
@@ -26,6 +29,8 @@ class Dashboard extends Component
 
             $this->revenue = $estimate != 0 ? (($estimate - $this->inventory_value) / $estimate) * 100 : 0;
         }
+
+        $this->readyToLoad = true;
     }
     public function render()
     {
