@@ -40,6 +40,7 @@
                                                 class="btn btn-danger flex-col mx-2">
                                                 <i class="fas fa-trash"></i>
                                             </button>
+                                        </div>
                                     </td>
                                 </tr>
                                 @endforeach
