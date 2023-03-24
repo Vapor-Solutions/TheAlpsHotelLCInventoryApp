@@ -15,7 +15,9 @@
                         <th>ID</th>
                         <th>SKU Number</th>
                         <th>Date Added</th>
+                        <th>Purchase/Opener</th>
                         <th>status</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
@@ -24,7 +26,17 @@
                             <td scope="row">{{ $item->id }}</td>
                             <td>{{ $item->sku_number }}</td>
                             <td>{{ Carbon\Carbon::parse($item->created_at)->format('jS \of F, Y') }}</td>
-                            <td>{!! $item->is_sold?'<h3 class="text-danger">SOLD</h3>':'<h3 class="text-success">IN STOCK</h3>' !!}</td>
+                            <td>{!! $item->purchases->count() > 0
+                                ? '<h5 class="text-danger">WAS PURCHASED</h5>'
+                                : '<h5 class="text-primary">IS OPENING STOCK</h5>' !!}</td>
+                            <td>{!! $item->is_sold ? '<h5 class="text-danger">SOLD</h5>' : '<h5 class="text-success">IN STOCK</h5>' !!}</td>
+                            <td>
+                                <button
+                                    onclick="confirm('Are you Sure you want to delete this Product Item?')||event.stopImmediatePropagation()"
+                                    wire:click="deleteProduct({{ $item->id }})" class="btn btn-danger flex-col mx-2">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
                         </tr>
                     @endforeach
 
@@ -108,8 +120,8 @@
                         <div class="modal-body">
                             <div class="mb-3">
                                 <label for="" class="form-label">Quantity</label>
-                                <input type="number" min="0" step="1" wire:model="quantity" class="form-control" name="" id=""
-                                    aria-describedby="helpId"
+                                <input type="number" min="0" step="1" wire:model="quantity"
+                                    class="form-control" name="" id="" aria-describedby="helpId"
                                     placeholder="Enter the Number of {{ $product->title }}s you want to add">
                                 @error('quantity')
                                     <small id="helpId" class="form-text text-danger">{{ $message }}</small>
@@ -117,8 +129,8 @@
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label">Price</label>
-                                <input type="number" min="0" step="0.01" wire:model="price" class="form-control" name="" id=""
-                                    aria-describedby="helpId"
+                                <input type="number" min="0" step="0.01" wire:model="price"
+                                    class="form-control" name="" id="" aria-describedby="helpId"
                                     placeholder="Default Price is KES {{ $product->price }}">
                                 @error('price')
                                     <small id="helpId" class="form-text text-danger">{{ $message }}</small>
@@ -134,10 +146,10 @@
             </div>
 
 
-            <!-- Optional: Place to the bottom of scripts -->
-            <script>
-                const myModal = new bootstrap.Modal(document.getElementById('modalId'), options)
-            </script>
+            <button type="button" onclick="confirm('Are you Sure you want to delete all Opening Stock?')||event.stopImmediatePropagation()" wire:click="deleteAllProducts" class="btn btn-primary btn-lg" >
+                Delete All Opening Stock
+            </button>
+
         </div>
     </div>
 </div>

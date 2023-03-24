@@ -66,7 +66,31 @@ class Show extends Component
         }
 
         $this->emit('done', [
-            'success' => 'Successfully Added '.$this->quantity.' new ' . $this->product->title . '-' . $this->product->quantity . $this->product->unit->title.'s'
+            'success' => 'Successfully Added ' . $this->quantity . ' new ' . $this->product->title . '-' . $this->product->quantity . $this->product->unit->title . 's'
+        ]);
+    }
+
+    public function deleteProduct($id)
+    {
+        $item = ProductItem::find($id);
+        $item->delete();
+
+        $this->emit('done', [
+            'success' => "Successfully Deleted Product Item No. " . $id
+        ]);
+    }
+
+
+    public function deleteAllProducts()
+    {
+        foreach ($this->product->productItems as $item) {
+            if (count($item->purchases) == 0) {
+                ProductItem::find($item->id)->delete();
+
+            }
+        }
+        $this->emit('done', [
+            'success' => 'Successfully Deleted Opening Stock Products'
         ]);
     }
 
