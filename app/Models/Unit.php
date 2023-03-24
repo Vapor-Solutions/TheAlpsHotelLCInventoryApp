@@ -17,6 +17,10 @@ class Unit extends Model
         return $this->belongsTo(UnitType::class);
     }
 
+    public function productDescriptions()
+    {
+        return $this->hasMany(ProductDescription::class);
+    }
 
     public function getEquivalenceAttribute()
     {
