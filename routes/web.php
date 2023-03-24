@@ -27,7 +27,7 @@ Route::prefix('admin')->middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', Admin\Dashboard::class)->name('admin.dashboard')->middleware('permission:view titties');
+    Route::get('/dashboard', Admin\Dashboard::class)->name('admin.dashboard');
     Route::get('/settings', Admin\Settings::class)->name('admin.settings');
 
     // Roles
