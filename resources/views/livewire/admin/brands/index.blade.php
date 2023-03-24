@@ -9,12 +9,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table
-                        class="table
-                table-hover
-                table-bordered
-
-                align-middle">
+                    <table class="table table-hover table-bordered align-middle">
                         <thead class="">
                             <tr>
                                 <th>ID</th>
@@ -30,7 +25,8 @@
                                     <td scope="row">{{ $brand->id }}</td>
                                     <td>{{ $brand->name }}</td>
                                     <td>
-                                        <img src="{{ $brand->logo_url }}?{{ rand(0,999) }}" alt="" class="img-thumbnail " width="40px">
+                                        <img src="{{ $brand->logo_url }}?{{ rand(0, 999) }}" alt=""
+                                            class="img-thumbnail " width="40px">
                                     </td>
                                     <td>{{ count($brand->productDescriptions) }}</td>
                                     <td>
@@ -56,7 +52,9 @@
                         </tfoot>
                     </table>
                 </div>
-
+            </div>
+            <div class="card-footer">
+                {{ $brands->links() }}
             </div>
         </div>
     </div>
