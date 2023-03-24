@@ -36,12 +36,12 @@ Route::prefix('admin')->middleware([
         Route::get('/create', Admin\Roles\Create::class)->name('admin.roles.create');
         Route::get('/{id}/edit', Admin\Roles\Edit::class)->name('admin.roles.edit');
     });
-    // Permissions
-    Route::prefix('permissions')->group(function () {
-        Route::get('/', Admin\Permissions\Index::class)->name('admin.permissions.index');
-        Route::get('/create', Admin\Permissions\Create::class)->name('admin.permissions.create');
-        Route::get('/{id}/edit', Admin\Permissions\Edit::class)->name('admin.permissions.edit');
-    });
+    // // Permissions
+    // Route::prefix('permissions')->group(function () {
+    //     Route::get('/', Admin\Permissions\Index::class)->name('admin.permissions.index');
+    //     Route::get('/create', Admin\Permissions\Create::class)->name('admin.permissions.create');
+    //     Route::get('/{id}/edit', Admin\Permissions\Edit::class)->name('admin.permissions.edit');
+    // });
     // Users
     Route::prefix('users')->group(function () {
         Route::get('/', Admin\Users\Index::class)->name('admin.users.index');

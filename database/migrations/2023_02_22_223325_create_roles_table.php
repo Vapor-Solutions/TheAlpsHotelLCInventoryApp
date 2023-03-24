@@ -23,7 +23,7 @@ return new class extends Migration
         DB::table('roles')->insert([
             [
                 'id' => 1,
-                'title' => 'Administrator'
+                'title' => 'Super Administrator'
             ]
         ]);
     }
