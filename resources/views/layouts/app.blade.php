@@ -133,10 +133,10 @@
                     text: e.info
                 })
             }
-            if (e.danger) {
+            if (e.error) {
                 Toast.fire({
-                    icon: 'danger',
-                    text: e.danger
+                    icon: 'error',
+                    text: e.error
                 })
             }
         })

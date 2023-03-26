@@ -2,12 +2,38 @@
 
 namespace App\Http\Livewire\Admin\Users;
 
+use App\Models\Role;
+use App\Models\User;
 use Livewire\Component;
 
 class Index extends Component
 {
+    public function delete($id)
+    {
+        $user = User::find($id);
+        if ($user->id == 1) {
+            $this->emit('done', [
+                'error' => "This User can't be Deleted from the System"
+            ]);
+            return;
+        }
+        if (!$user->hasRole(Role::find(1)->title) xor auth()->user()->hasPermissionTo('Delete Admins')) {
+            $user->roles()->detach();
+            $user->delete();
+
+            $this->emit('done', [
+                'success' => "Successfully Deleted this User"
+            ]);
+        } else {
+            $this->emit('done', [
+                'error' => "You Do not have the permission to delete this User"
+            ]);
+        }
+    }
     public function render()
     {
-        return view('livewire.admin.users.index');
+        return view('livewire.admin.users.index', [
+            'users' => User::all()
+        ]);
     }
 }

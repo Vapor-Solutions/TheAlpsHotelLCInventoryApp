@@ -27,12 +27,50 @@
         System Relations
     </div>
 
-    <!-- ustomers Links-->
+    <!-- Users Links-->
+    <li class="nav-item {{ request()->routeIs('admin.users*') ? 'active' : '' }}">
+        <a class="nav-link {{ request()->routeIs('admin.users*') ? '' : 'collapsed' }}" href="#"
+            data-toggle="collapse" data-target="#collapseUsers" aria-expanded="true"
+            aria-controls="collapseUsers">
+            <i class="fas fa-fw fa-user-tie"></i>
+            <span>Users</span>
+        </a>
+        <div id="collapseUsers" class="collapse {{ request()->routeIs('admin.users*') ? 'show' : '' }}"
+            aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Options:</h6>
+                <a class="collapse-item {{ request()->routeIs('admin.users.index') ? 'active' : '' }}"
+                    href="{{ route('admin.users.index') }}">View Users</a>
+                <a class="collapse-item {{ request()->routeIs('admin.users.create') ? 'active' : '' }}"
+                    href="{{ route('admin.users.create') }}">Create a new User</a>
+            </div>
+        </div>
+    </li>
+    <li class="nav-item {{ request()->routeIs('admin.roles*') ? 'active' : '' }}">
+        <a class="nav-link {{ request()->routeIs('admin.roles*') ? '' : 'collapsed' }}" href="#"
+            data-toggle="collapse" data-target="#collapseRoles" aria-expanded="true"
+            aria-controls="collapseRoles">
+            <i class="fas fa-fw fa-hard-hat"></i>
+            <span>Roles</span>
+        </a>
+        <div id="collapseRoles" class="collapse {{ request()->routeIs('admin.roles*') ? 'show' : '' }}"
+            aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Options:</h6>
+                <a class="collapse-item {{ request()->routeIs('admin.roles.index') ? 'active' : '' }}"
+                    href="{{ route('admin.roles.index') }}">View Roles</a>
+                <a class="collapse-item {{ request()->routeIs('admin.roles.create') ? 'active' : '' }}"
+                    href="{{ route('admin.roles.create') }}">Create a new Role</a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Departments Links-->
     <li class="nav-item {{ request()->routeIs('admin.departments*') ? 'active' : '' }}">
         <a class="nav-link {{ request()->routeIs('admin.departments*') ? '' : 'collapsed' }}" href="#"
             data-toggle="collapse" data-target="#collapseDepartments" aria-expanded="true"
             aria-controls="collapseDepartments">
-            <i class="fas fa-fw fa-users"></i>
+            <i class="fas fa-fw fa-cubes"></i>
             <span>Departments</span>
         </a>
         <div id="collapseDepartments" class="collapse {{ request()->routeIs('admin.departments*') ? 'show' : '' }}"
