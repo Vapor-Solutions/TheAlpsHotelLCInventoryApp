@@ -18,8 +18,7 @@
                                 <th>ID</th>
                                 <th>Dispatch Date</th>
                                 <th>Number of Products</th>
-                                <th>Total Spent</th>
-                                <th>Total Paid</th>
+                                <th>Total Cost</th>
                                 <th class="text-center">Actions</th>
                             </tr>
                         </thead>
@@ -31,9 +30,6 @@
                                     <td>{{ count($dispatch->productItems) }}</td>
                                     <td>
                                         <x-currency></x-currency>{{ number_format($dispatch->total_cost, 2) }}
-                                    </td>
-                                    <td>
-                                        <x-currency></x-currency>{{ number_format($dispatch->balance, 2) }}
                                     </td>
                                     <td>
                                         <div class="d-flex flex-row justify-content-center">
@@ -53,7 +49,7 @@
                                                 <button
                                                     onclick="confirm('Are You Sure you want to delete this Product Dispatch?')||event.stopImmediatePropagation()"
                                                     wire:click="delete({{ $dispatch->id }})" class="btn btn-danger">
-                                                    <i class="fas fa-edit"></i>
+                                                    <i class="fas fa-trash"></i>
                                                 </button>
                                             </div>
                                         </div>

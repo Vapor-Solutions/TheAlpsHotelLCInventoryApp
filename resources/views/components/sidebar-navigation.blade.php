@@ -226,20 +226,20 @@
             </div>
         </div>
     </li>
-    <li class="nav-item {{ request()->routeIs('admin.quotations*') ? 'active' : '' }}">
-        <a class="nav-link {{ request()->routeIs('admin.quotations*') ? '' : 'collapsed' }}" href="#"
-            data-toggle="collapse" data-target="#collapsequotations" aria-expanded="true" aria-controls="collapsequotations">
+    <li class="nav-item {{ request()->routeIs('admin.purchase-orders*') ? 'active' : '' }}">
+        <a class="nav-link {{ request()->routeIs('admin.purchase-orders*') ? '' : 'collapsed' }}" href="#"
+            data-toggle="collapse" data-target="#collapsepurchase-orders" aria-expanded="true" aria-controls="collapsepurchase-orders">
             <i class="fas fa-fw fa-file-invoice"></i>
-            <span>Quotations</span>
+            <span>Purchase Orders</span>
         </a>
-        <div id="collapsequotations" class="collapse {{ request()->routeIs('admin.quotations*') ? 'show' : '' }}"
+        <div id="collapsepurchase-orders" class="collapse {{ request()->routeIs('admin.purchase-orders*') ? 'show' : '' }}"
             aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Options:</h6>
-                <a class="collapse-item {{ request()->routeIs('admin.quotations.index') ? 'active' : '' }}"
-                    href="{{ route('admin.quotations.index') }}">View quotations List</a>
-                <a class="collapse-item {{ request()->routeIs('admin.quotations.create') ? 'active' : '' }}"
-                    href="{{ route('admin.quotations.create') }}">Add a new Quotation</a>
+                <a class="collapse-item {{ request()->routeIs('admin.purchase-orders.index') ? 'active' : '' }}"
+                    href="{{ route('admin.purchase-orders.index') }}">View LPO List</a>
+                <a class="collapse-item {{ request()->routeIs('admin.purchase-orders.create') ? 'active' : '' }}"
+                    href="{{ route('admin.purchase-orders.create') }}">Make a new LPO</a>
             </div>
         </div>
     </li>

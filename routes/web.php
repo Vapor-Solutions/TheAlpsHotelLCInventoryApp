@@ -156,4 +156,12 @@ Route::prefix('admin')->middleware([
         Route::get('/{id}/edit', Admin\Dispatches\Edit::class)->name('admin.dispatches.edit');
         Route::get('/{id}/show', Admin\Dispatches\Show::class)->name('admin.dispatches.show');
     });
+
+    // Purchase Orders
+    Route::prefix('purchase_orders')->group(function () {
+        Route::get('/', Admin\PurchaseOrders\Index::class)->name('admin.purchase-orders.index');
+        Route::get('/create', Admin\PurchaseOrders\Create::class)->name('admin.purchase-orders.create');
+        Route::get('/{id}/edit', Admin\PurchaseOrders\Edit::class)->name('admin.purchase-orders.edit');
+        Route::get('/{id}/show', Admin\PurchaseOrders\Show::class)->name('admin.purchase-orders.show');
+    });
 });

@@ -95,9 +95,7 @@ class Create extends Component
             }
             foreach ($productDescription->productItems as $product_item) {
                 if (!$product_item->is_dispatched) {
-                    $product_item->dispatches()->attach($this->dispatch->id, [
-                        'dispatch_price' => $this->price
-                    ]);
+                    $product_item->dispatches()->attach($this->dispatch->id);
                     $count++;
                 }
 
