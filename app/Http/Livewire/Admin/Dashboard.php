@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin;
 
 use App\Models\Department;
+use App\Models\Dispatch;
 use App\Models\ProductDescription;
 use App\Models\ProductItem;
 use App\Models\Purchase;
@@ -15,7 +16,9 @@ class Dashboard extends Component
     public $departments = [];
     public $inventory_value = 0;
     public $purchasesThisMonth = [];
+    public $dispatchesThisMonth = [];
     public $purchasevalue = 0;
+    public $dispatchValue = 0;
 
 
     public $readyToLoad = false;
@@ -28,9 +31,13 @@ class Dashboard extends Component
         $end = Carbon::now()->endOfMonth();
 
         $this->purchasesThisMonth = Purchase::whereBetween('purchase_date', [$start, $end])->get();
+        $this->dispatchesThisMonth = Dispatch::whereBetween('dispatch_date', [$start, $end])->get();
 
         foreach ($this->purchasesThisMonth as $purchase) {
             $this->purchasevalue += $purchase->total_cost;
+        }
+        foreach ($this->dispatchesThisMonth as $dispatch) {
+            $this->dispatchValue += $dispatch->total_cost;
         }
 
 

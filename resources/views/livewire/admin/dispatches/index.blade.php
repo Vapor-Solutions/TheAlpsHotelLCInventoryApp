@@ -20,7 +20,6 @@
                                 <th>Number of Products</th>
                                 <th>Total Spent</th>
                                 <th>Total Paid</th>
-                                <th>Balance</th>
                                 <th class="text-center">Actions</th>
                             </tr>
                         </thead>
@@ -32,10 +31,6 @@
                                     <td>{{ count($dispatch->productItems) }}</td>
                                     <td>
                                         <x-currency></x-currency>{{ number_format($dispatch->total_cost, 2) }}
-                                    </td>
-                                    <td>
-                                        <x-currency></x-currency>
-                                        {{ number_format($dispatch->total_cost - $dispatch->balance, 2) }}
                                     </td>
                                     <td>
                                         <x-currency></x-currency>{{ number_format($dispatch->balance, 2) }}

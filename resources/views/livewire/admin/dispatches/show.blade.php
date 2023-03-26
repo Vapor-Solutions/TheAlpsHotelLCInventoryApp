@@ -16,14 +16,14 @@
         </div>
         <div class="row justify-content-end mt-3">
             <div class="col-12 ">
-                <p class="me-auto"><u>Department</u>: {{ $dispatch->department->name }}</p>
+                <p class="me-auto"><u>Department</u>: {{ $dispatch->department->title }}</p>
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-8 col-12">
                 <div class="card my-5">
-                    <div class="table-responsive " style="height: 600px">
+                    <div class="table-responsive " style="max-height: 600px">
                         <table class="table ">
                             <thead>
                                 <tr>
