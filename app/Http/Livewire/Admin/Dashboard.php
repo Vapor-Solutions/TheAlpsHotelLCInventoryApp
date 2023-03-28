@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Models\ActivityLog;
 use App\Models\Department;
 use App\Models\Dispatch;
 use App\Models\ProductDescription;
@@ -9,9 +10,13 @@ use App\Models\ProductItem;
 use App\Models\Purchase;
 use Carbon\Carbon;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Dashboard extends Component
 {
+
+    use WithPagination;
+
     public $products = [];
     public $departments = [];
     public $inventory_value = 0;
@@ -49,7 +54,9 @@ class Dashboard extends Component
     }
     public function render()
     {
-        return view('livewire.admin.dashboard');
+        return view('livewire.admin.dashboard', [
+            'activities' => $this->readyToLoad ? ActivityLog::orderBy('created_at', 'DESC')->paginate(5) : []
+        ]);
         // dd(ProductItem::with('productDescription')->limit(5)->get());
     }
 }

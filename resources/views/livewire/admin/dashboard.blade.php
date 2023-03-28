@@ -62,7 +62,8 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                    Total Purchases ({{ Carbon\Carbon::now()->format('F, Y') }}) ({{ env('DEFAULT_CURRENCY_SYMBOL') }})</div>
+                                    Total Purchases ({{ Carbon\Carbon::now()->format('F, Y') }})
+                                    ({{ env('DEFAULT_CURRENCY_SYMBOL') }})</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
                                     @if ($purchasesThisMonth)
                                         <x-currency></x-currency>{{ number_format($purchasevalue, 2) }}
@@ -88,7 +89,8 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                    Total Dispatch Value ({{ Carbon\Carbon::now()->format('F, Y') }}) ({{ env('DEFAULT_CURRENCY_SYMBOL') }})</div>
+                                    Total Dispatch Value ({{ Carbon\Carbon::now()->format('F, Y') }})
+                                    ({{ env('DEFAULT_CURRENCY_SYMBOL') }})</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
                                     @if ($dispatchesThisMonth)
                                         <x-currency></x-currency>{{ number_format($dispatchValue, 2) }}
@@ -110,6 +112,44 @@
             </div>
 
         </div>
+
+
+
+        {{-- Activity Log --}}
+
+        @if (auth()->user()->roles->contains('id', 1))
+            <div class="row">
+                <div class="col-md-8 col-12">
+                    <div class="card">
+                        <div class="card-body table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Activity</th>
+                                        <th scope="col">Date & Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($activities as $activity)
+                                        <tr class="">
+                                            <td scope="row">{{ $activity->id }}</td>
+                                            <td>{{ $activity->user->name }} {{ $activity->payload }}</td>
+                                            <td>{{ Carbon\Carbon::parse($activity->created_at)->format('jS F, Y h:i:sA') }}
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="card-footer">
+                            {{ $activities ? $activities->links() : '' }}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        @endif
     </div>
 
 </div>

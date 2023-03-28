@@ -53,7 +53,8 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; The Ricnel Group 2023</span>
+                        <span>Copyright &copy; The Alps Hotel Nakuru - KCB Leadership Centre Branch
+                            {{ Carbon\Carbon::now()->year }}</span>
                     </div>
                 </div>
             </footer>

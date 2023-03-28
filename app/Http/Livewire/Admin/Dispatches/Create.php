@@ -59,7 +59,7 @@ class Create extends Component
                 }else {
                     if ($this->quantity > ProductDescription::find($this->product_id)->available_items) {
                         throw ValidationException::withMessages([
-                            'quantity' => 'The Available '
+                            'quantity' => 'The quantity surpasses the number of available items'
                         ]);
                     }
                 }
