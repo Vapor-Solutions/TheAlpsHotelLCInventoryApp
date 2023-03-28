@@ -35,7 +35,7 @@ class Edit extends Component
 
     public function mount($id)
     {
-        $this->middleware('permission:Update Customers');
+        // $this->middleware('permission:Update Customers');
         $this->customer = Customer::find($id);
     }
 

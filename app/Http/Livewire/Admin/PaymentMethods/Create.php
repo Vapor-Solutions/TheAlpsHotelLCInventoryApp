@@ -22,7 +22,7 @@ class Create extends Component
 
     public function mount()
     {
-        $this->middleware('permission:Create Payment Methods');
+        // $this->middleware('permission:Create Payment Methods');
         $this->method = new PaymentMethod();
     }
 

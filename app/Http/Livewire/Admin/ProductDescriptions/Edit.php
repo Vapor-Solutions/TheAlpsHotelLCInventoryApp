@@ -30,7 +30,7 @@ class Edit extends Component
 
     public function mount($id)
     {
-        $this->middleware('permission:Edit Product Descriptions');
+        // $this->middleware('permission:Edit Product Descriptions');
         $this->product_description = ProductDescription::find($id);
     }
 

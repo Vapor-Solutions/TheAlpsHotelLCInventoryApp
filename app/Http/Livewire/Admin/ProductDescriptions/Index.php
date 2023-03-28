@@ -18,7 +18,7 @@ class Index extends Component
     public function mount()
     {
         // $this->product_descriptions = ProductDescription::all();
-        $this->middleware('permission:Delete Product Descriptions')->only('delete');
+        // $this->middleware('permission:Delete Product Descriptions')->only('delete');
         $this->products = ProductDescription::all();
         // $this->customers = Customer::all();
         foreach ($this->products as $product) {

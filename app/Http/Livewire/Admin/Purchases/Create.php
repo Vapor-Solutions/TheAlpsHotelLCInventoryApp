@@ -26,7 +26,7 @@ class Create extends Component
 
     public function mount()
     {
-        $this->middleware('permission:Create Purchases');
+        // $this->middleware('permission:Create Purchases');
         $this->productDescriptions = ProductDescription::all();
         $this->purchase =  new Purchase();
     }

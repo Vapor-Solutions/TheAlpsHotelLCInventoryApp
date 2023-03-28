@@ -11,7 +11,7 @@ class Index extends Component
 {
     public function mount()
     {
-        $this->middleware('permission:Delete Users')->only('delete');
+        // $this->middleware('permission:Delete Users')->only('delete');
     }
     public function delete($id)
     {

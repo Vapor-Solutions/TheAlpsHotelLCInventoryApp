@@ -35,7 +35,7 @@ class Edit extends Component
 
     public function mount($id)
     {
-        $this->middleware('permission:Update Users');
+        // $this->middleware('permission:Update Users');
         $this->user = User::find($id);
         foreach ($this->user->roles as $role) {
             array_push($this->roles, $role->id);

@@ -11,7 +11,7 @@ class Show extends Component
 
     public function mount($id)
     {
-        $this->middleware('permission:Read Purchase Orders');
+        // $this->middleware('permission:Read Purchase Orders');
         $this->order = PurchaseOrder::find($id);
     }
     public function render()

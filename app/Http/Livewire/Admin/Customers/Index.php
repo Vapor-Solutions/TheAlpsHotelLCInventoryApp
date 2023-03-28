@@ -19,9 +19,6 @@ class Index extends Component
         'done' => 'render'
     ];
 
-    public function mount()
-    {
-    }
 
     public function delete($id)
     {

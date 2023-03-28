@@ -28,7 +28,7 @@ class Create extends Component
 
     public function mount()
     {
-        $this->middleware('permission:Create Product Descriptions');
+        // $this->middleware('permission:Create Product Descriptions');
         $this->product_description = new ProductDescription();
     }
 

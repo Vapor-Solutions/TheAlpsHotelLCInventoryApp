@@ -17,7 +17,7 @@ class Edit extends Component
 
     public function mount($id)
     {
-        $this->middleware('permission:Update Departments');
+        // $this->middleware('permission:Update Departments');
         $this->department = Department::find($id);
     }
 

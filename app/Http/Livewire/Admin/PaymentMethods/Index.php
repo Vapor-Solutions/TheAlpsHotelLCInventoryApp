@@ -14,7 +14,7 @@ class Index extends Component
 
     public function mount()
     {
-        $this->middleware('permission:Delete Payment Methods')->only('delete');
+        // $this->middleware('permission:Delete Payment Methods')->only('delete');
     }
 
     public function delete($id)

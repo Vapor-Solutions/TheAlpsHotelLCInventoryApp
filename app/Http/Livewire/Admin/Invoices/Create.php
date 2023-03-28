@@ -17,7 +17,7 @@ class Create extends Component
 
     public function mount()
     {
-        $this->middleware('permission:Create Invoices');
+        // $this->middleware('permission:Create Invoices');
         $this->invoice = new Invoice();
     }
 

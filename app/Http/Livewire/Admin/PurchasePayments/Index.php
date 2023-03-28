@@ -14,7 +14,7 @@ class Index extends Component
     protected $paginationTheme = 'bootstrap';
     public function mount()
     {
-        $this->middleware('permission:Read Purchase Payments');
+        // $this->middleware('permission:Read Purchase Payments');
     }
     public function render()
     {

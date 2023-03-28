@@ -20,7 +20,7 @@ class Edit extends Component
 
     public function mount($id)
     {
-        $this->middleware('permission:Update Purchase Payments');
+        // $this->middleware('permission:Update Purchase Payments');
         $this->payment = PurchasePayment::find($id);
         $this->old_amount = $this->payment->amount;
     }

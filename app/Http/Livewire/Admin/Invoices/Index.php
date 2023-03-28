@@ -10,7 +10,7 @@ class Index extends Component
 {
     public function mount()
     {
-        $this->middleware('permission:Delete Invoices')->only('delete');
+        // $this->middleware('permission:Delete Invoices')->only('delete');
     }
     public function delete($id)
     {

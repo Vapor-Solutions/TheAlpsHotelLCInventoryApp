@@ -18,7 +18,7 @@ class Edit extends Component
 
     public function mount($id)
     {
-        $this->middleware('permission:Update Product Categries');
+        // $this->middleware('permission:Update Product Categries');
         $this->product_category = ProductCategory::find($id);
     }
 

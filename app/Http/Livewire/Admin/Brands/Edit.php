@@ -34,7 +34,7 @@ class Edit extends Component
     public function mount($id)
     {
         $this->brand = Brand::find($id);
-        $this->middleware('permission:Update Brands');
+        // $this->middleware('permission:Update Brands');
     }
 
     public function save()

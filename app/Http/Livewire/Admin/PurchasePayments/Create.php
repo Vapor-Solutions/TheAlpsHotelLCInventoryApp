@@ -19,7 +19,7 @@ class Create extends Component
 
     public function mount()
     {
-        $this->middleware('permission:Create Purchase Payments');
+        // $this->middleware('permission:Create Purchase Payments');
         $this->payment = new PurchasePayment();
     }
 

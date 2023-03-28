@@ -17,7 +17,7 @@ class Create extends Component
 
     public function mount()
     {
-        $this->middleware('permission:Create Product Categories');
+        // $this->middleware('permission:Create Product Categories');
         $this->product_category = new ProductCategory();
     }
 

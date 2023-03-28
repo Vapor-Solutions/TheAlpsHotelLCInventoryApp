@@ -16,7 +16,7 @@ class Index extends Component
 
     public function mount()
     {
-        $this->middleware('permission:Delete Product Categories')->only('delete');
+        // $this->middleware('permission:Delete Product Categories')->only('delete');
         $this->productCategories = ProductCategory::all();
     }
 

@@ -20,7 +20,7 @@ class Edit extends Component
 
     public function mount($id)
     {
-        $this->middleware('permission:Update Units');
+        // $this->middleware('permission:Update Units');
         $this->unit = Unit::find($id);
     }
 
