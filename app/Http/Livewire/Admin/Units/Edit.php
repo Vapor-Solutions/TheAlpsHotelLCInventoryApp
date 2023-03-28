@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Units;
 
+use App\Models\ActivityLog;
 use App\Models\Unit;
 use Livewire\Component;
 
@@ -19,6 +20,7 @@ class Edit extends Component
 
     public function mount($id)
     {
+        $this->middleware('permission:Update Units');
         $this->unit = Unit::find($id);
     }
 
@@ -26,6 +28,11 @@ class Edit extends Component
     {
         $this->validate();
         $this->unit->save();
+
+        ActivityLog::create([
+            'user_id' => auth()->user()->id,
+            'payload' => "Updated Measurement Unit No. " . $this->unit->id
+        ]);
 
         return redirect()->route('admin.units.index');
     }

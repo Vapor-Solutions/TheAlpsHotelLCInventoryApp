@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Brands;
 
+use App\Models\ActivityLog;
 use App\Models\Brand;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -18,6 +19,10 @@ class Index extends Component
     ];
 
 
+    public function mount()
+    {
+        $this->middleware('permission:Delete Brands')->only('delete');
+    }
 
     public function delete($id)
     {
@@ -29,6 +34,11 @@ class Index extends Component
             }
 
             $brand->delete();
+
+            ActivityLog::create([
+                'user_id' => auth()->user()->id,
+                'payload' => "Deleted Brand No. " . $brand->id . " from the system"
+            ]);
 
             $this->emit('done', [
                 'success' => 'Successfully Deleted this Brand'

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Users;
 
+use App\Models\ActivityLog;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
@@ -34,6 +35,7 @@ class Edit extends Component
 
     public function mount($id)
     {
+        $this->middleware('permission:Update Users');
         $this->user = User::find($id);
         foreach ($this->user->roles as $role) {
             array_push($this->roles, $role->id);
@@ -51,6 +53,10 @@ class Edit extends Component
         $this->user->roles()->detach();
         $this->user->roles()->attach($this->roles);
 
+        ActivityLog::create([
+            'user_id' => auth()->user()->id,
+            'payload' => "Updated User No. " . $this->user->id
+        ]);
         return redirect()->route('admin.users.index');
     }
     public function render()

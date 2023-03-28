@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\PurchaseOrders;
 
+use App\Models\ActivityLog;
 use App\Models\ProductDescription;
 use App\Models\ProductItem;
 use App\Models\PurchaseOrder;
@@ -24,6 +25,7 @@ class Create extends Component
 
     public function mount()
     {
+        $this->middleware('permission:Create Purchase Orders');
         $this->productDescriptions = ProductDescription::all();
         $this->order =  new PurchaseOrder();
     }
@@ -64,6 +66,12 @@ class Create extends Component
         $this->order->user_id = auth()->user()->id;
 
         $this->order->save();
+
+        ActivityLog::create([
+            'user_id' => auth()->user()->id,
+            'payload' => "Created Purchase Order No. " . $this->order->id
+        ]);
+
         foreach ($this->productsList as $key => $item) {
             $this->order->productDescriptions()->attach($item[0], [
                 'quantity' => $item[1]

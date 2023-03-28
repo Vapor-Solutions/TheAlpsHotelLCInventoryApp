@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Roles;
 
+use App\Models\ActivityLog;
 use App\Models\Role;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
@@ -45,6 +46,11 @@ class Edit extends Component
 
         $this->role->permissions()->detach();
         $this->role->permissions()->attach($this->permissions);
+
+        ActivityLog::create([
+            'user_id' => auth()->user()->id,
+            'payload' => "Updated Role No. " . $this->role->id
+        ]);
 
         return redirect()->route('admin.roles.index');
     }

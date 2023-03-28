@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\PaymentMethods;
 
+use App\Models\ActivityLog;
 use App\Models\PaymentMethod;
 use Livewire\Component;
 use Illuminate\Support\Str;
@@ -21,6 +22,7 @@ class Create extends Component
 
     public function mount()
     {
+        $this->middleware('permission:Create Payment Methods');
         $this->method = new PaymentMethod();
     }
 
@@ -34,6 +36,11 @@ class Create extends Component
             $this->method->logo_path = 'payment_method_logos/' . Str::slug($this->method->title) . '.' . $this->logo->extension();
         }
         $this->method->save();
+
+        ActivityLog::create([
+            'user_id' => auth()->user()->id,
+            'payload' => "Created Payment Method No. ".$this->method->id
+        ]);
 
         return redirect()->route('admin.payment-methods.index');
     }

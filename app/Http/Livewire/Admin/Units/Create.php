@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Units;
 
+use App\Models\ActivityLog;
 use App\Models\Unit;
 use Livewire\Component;
 
@@ -20,6 +21,7 @@ class Create extends Component
 
     public function mount()
     {
+        $this->middleware('permission:Create Units');
         $this->unit = new Unit();
     }
 
@@ -27,6 +29,11 @@ class Create extends Component
     {
         $this->validate();
         $this->unit->save();
+
+        ActivityLog::create([
+            'user_id' => auth()->user()->id,
+            'payload' => "Created Measurement Unit No. " . $this->unit->id
+        ]);
 
         return redirect()->route('admin.units.index');
     }

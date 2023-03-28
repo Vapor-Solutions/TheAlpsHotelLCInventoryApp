@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\ProductDescriptions;
 
+use App\Models\ActivityLog;
 use App\Models\ProductDescription;
 use App\Models\ProductImage;
 use Livewire\Component;
@@ -27,6 +28,7 @@ class Create extends Component
 
     public function mount()
     {
+        $this->middleware('permission:Create Product Descriptions');
         $this->product_description = new ProductDescription();
     }
 
@@ -45,6 +47,13 @@ class Create extends Component
                 $prodimg->save();
             }
         }
+
+        ActivityLog::create([
+            'user_id' => auth()->user()->id,
+            'payload' => "Created Product Description No. " . $this->product_description->id
+        ]);
+
+
 
 
         return redirect()->route('admin.product-descriptions.index');

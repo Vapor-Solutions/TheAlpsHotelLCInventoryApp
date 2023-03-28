@@ -30,9 +30,12 @@ class Index extends Component
 
         $log = new ActivityLog();
         $log->user_id = auth()->user()->id;
-        $log->payload = "<strong>" . auth()->user()->id . "</strong> deleted customer No. <strong>$customer->id</strong> from the system";
+        $log->payload = "Deleted customer No. <strong>$customer->id</strong> from the system";
 
-
+        ActivityLog::create([
+            'user_id' => auth()->user()->id,
+            'payload' => "Created Customer No. " . $this->customer->id
+        ]);
         $this->emit('done', [
             'success' => "Successfully Deleted the Customer `$customer->name` from the system"
         ]);

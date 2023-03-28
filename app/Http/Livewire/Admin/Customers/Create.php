@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Customers;
 
+use App\Models\ActivityLog;
 use App\Models\Customer;
 use Livewire\Component;
 
@@ -21,6 +22,7 @@ class Create extends Component
 
     public function mount()
     {
+        $this->middleware('permission:Create Customers');
         $this->customer = new Customer();
     }
 
@@ -29,6 +31,11 @@ class Create extends Component
         $this->validate();
 
         $this->customer->save();
+
+        ActivityLog::create([
+            'user_id' => auth()->user()->id,
+            'payload' => "Created Customer No. " . $this->customer->id
+        ]);
 
         return redirect()->route('admin.customers.index');
     }

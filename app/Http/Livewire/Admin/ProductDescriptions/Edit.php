@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\ProductDescriptions;
 
+use App\Models\ActivityLog;
 use App\Models\ProductDescription;
 use App\Models\ProductImage;
 use Livewire\Component;
@@ -29,6 +30,7 @@ class Edit extends Component
 
     public function mount($id)
     {
+        $this->middleware('permission:Edit Product Descriptions');
         $this->product_description = ProductDescription::find($id);
     }
 
@@ -47,6 +49,10 @@ class Edit extends Component
             }
         }
 
+        ActivityLog::create([
+            'user_id' => auth()->user()->id,
+            'payload' => "Edited Product Description No. " . $this->product_description->id
+        ]);
 
         return redirect()->route('admin.product-descriptions.index');
     }

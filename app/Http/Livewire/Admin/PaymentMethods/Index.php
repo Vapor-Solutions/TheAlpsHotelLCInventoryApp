@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\PaymentMethods;
 
+use App\Models\ActivityLog;
 use App\Models\PaymentMethod;
 use Livewire\Component;
 
@@ -10,6 +11,11 @@ class Index extends Component
     protected $listeners = [
         'done'=>'render'
     ];
+
+    public function mount()
+    {
+        $this->middleware('permission:Delete Payment Methods')->only('delete');
+    }
 
     public function delete($id)
     {
@@ -23,6 +29,11 @@ class Index extends Component
 
         if ($method->logo_path) unlink($method->logo_path);
         $method->delete();
+
+        ActivityLog::create([
+            'user_id' => auth()->user()->id,
+            'payload' => "Deleted Payment Method No. $method->id"
+        ]);
         $this->emit('done', [
             'success'=>"Successfully Deleted that Payment Method"
         ]);

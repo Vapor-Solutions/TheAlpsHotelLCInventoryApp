@@ -16,6 +16,7 @@ class Edit extends Component
 
     public function mount($id)
     {
+        $this->middleware('permission:Update Invoices');
         $this->invoice = Invoice::find($id);
     }
 

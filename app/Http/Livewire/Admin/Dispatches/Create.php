@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Dispatches;
 
+use App\Models\ActivityLog;
 use App\Models\Dispatch;
 use App\Models\ProductDescription;
 use Illuminate\Validation\ValidationException;
@@ -30,6 +31,7 @@ class Create extends Component
 
     public function mount()
     {
+        $this->middleware('permission:Create Dispatches');
         $this->dispatch =  new Dispatch();
     }
 
@@ -104,6 +106,11 @@ class Create extends Component
                 }
             }
         }
+
+        ActivityLog::create([
+            'user_id' => auth()->user()->id,
+            'payload' => "Created Dispatch No. " . $this->dispatch->id
+        ]);
 
 
         $this->reset('productsList');

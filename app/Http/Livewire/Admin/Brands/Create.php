@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Brands;
 
+use App\Models\ActivityLog;
 use App\Models\Brand;
 use Livewire\Component;
 
@@ -35,6 +36,10 @@ class Create extends Component
 
         $this->brand->save();
 
+        ActivityLog::create([
+            'user_id' => auth()->user()->id,
+            'payload' => "Created Brand No. " . $this->brand->id . " from the system"
+        ]);
         return redirect()->route('admin.brands.index');
     }
 

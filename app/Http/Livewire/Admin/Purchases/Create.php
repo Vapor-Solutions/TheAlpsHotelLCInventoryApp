@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Purchases;
 
+use App\Models\ActivityLog;
 use App\Models\ProductDescription;
 use App\Models\ProductItem;
 use App\Models\Purchase;
@@ -25,6 +26,7 @@ class Create extends Component
 
     public function mount()
     {
+        $this->middleware('permission:Create Purchases');
         $this->productDescriptions = ProductDescription::all();
         $this->purchase =  new Purchase();
     }
@@ -39,12 +41,6 @@ class Create extends Component
 
         $count = 0;
         if ($this->productsList) {
-            // foreach ($this->productsList as $value) {
-            //     if (intval($value[0]) == intval($this->product_id)) {
-            //         $value[1] = intval($this->quantity)+ $value[1];
-            //         $count++;
-            //     }
-            // }
 
 
             for ($i = 0; $i < count($this->productsList); $i++) {
@@ -72,6 +68,12 @@ class Create extends Component
         $this->validate();
 
         $this->purchase->save();
+
+
+        ActivityLog::create([
+            'user_id' => auth()->user()->id,
+            'payload' => "Created Purchase No. " . $this->purchase->id
+        ]);
 
         foreach ($this->productsList as $key => $item) {
             for ($i = 0; $i < $item[1]; $i++) {

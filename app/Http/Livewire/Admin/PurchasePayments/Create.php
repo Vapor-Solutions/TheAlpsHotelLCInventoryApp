@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\PurchasePayments;
 
+use App\Models\ActivityLog;
 use App\Models\PurchasePayment;
 use Illuminate\Validation\ValidationException;
 use Livewire\Component;
@@ -18,6 +19,7 @@ class Create extends Component
 
     public function mount()
     {
+        $this->middleware('permission:Create Purchase Payments');
         $this->payment = new PurchasePayment();
     }
 
@@ -33,6 +35,12 @@ class Create extends Component
         }
 
         $this->payment->save();
+
+        ActivityLog::create([
+            'user_id' => auth()->user()->id,
+            'payload' => "Added Purchase Payment No. " . $this->payment->id
+        ]);
+
 
 
         return redirect()->route('admin.purchase-payments.index');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Brands;
 
+use App\Models\ActivityLog;
 use App\Models\Brand;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -33,6 +34,7 @@ class Edit extends Component
     public function mount($id)
     {
         $this->brand = Brand::find($id);
+        $this->middleware('permission:Update Brands');
     }
 
     public function save()
@@ -45,6 +47,11 @@ class Edit extends Component
         }
 
         $this->brand->save();
+
+        ActivityLog::create([
+            'user_id' => auth()->user()->id,
+            'payload' => "Edited Brand No. " . $this->brand->id . " from the system"
+        ]);
 
         return redirect()->route('admin.brands.index');
     }

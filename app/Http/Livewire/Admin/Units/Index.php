@@ -7,6 +7,10 @@ use Livewire\Component;
 
 class Index extends Component
 {
+    public function mount()
+    {
+        $this->middleware('permission:Delete Units')->only('delete');
+    }
     public function delete($id)
     {
         $unit = Unit::find($id);

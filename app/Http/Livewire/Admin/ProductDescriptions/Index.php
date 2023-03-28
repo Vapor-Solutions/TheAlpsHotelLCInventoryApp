@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\ProductDescriptions;
 
+use App\Models\ActivityLog;
 use App\Models\ProductDescription;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -17,6 +18,7 @@ class Index extends Component
     public function mount()
     {
         // $this->product_descriptions = ProductDescription::all();
+        $this->middleware('permission:Delete Product Descriptions')->only('delete');
         $this->products = ProductDescription::all();
         // $this->customers = Customer::all();
         foreach ($this->products as $product) {
@@ -39,6 +41,12 @@ class Index extends Component
         }
 
         $desc->delete();
+
+        ActivityLog::create([
+            'user_id' => auth()->user()->id,
+            'payload' => "Deleted Product Description No. " . $desc->id
+        ]);
+
 
         $this->emit('done', [
             'success'=>'Successfully Deleted the Product Description'

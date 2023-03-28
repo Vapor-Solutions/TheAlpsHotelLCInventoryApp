@@ -2,12 +2,17 @@
 
 namespace App\Http\Livewire\Admin\Users;
 
+use App\Models\ActivityLog;
 use App\Models\Role;
 use App\Models\User;
 use Livewire\Component;
 
 class Index extends Component
 {
+    public function mount()
+    {
+        $this->middleware('permission:Delete Users')->only('delete');
+    }
     public function delete($id)
     {
         $user = User::find($id);
@@ -17,9 +22,14 @@ class Index extends Component
             ]);
             return;
         }
-        if (!$user->hasRole(Role::find(1)->title) xor auth()->user()->hasPermissionTo('Delete Admins')) {
+        if ($user->hasRole(Role::find(1)->title) xor auth()->user()->hasPermissionTo('Delete Admins')) {
             $user->roles()->detach();
             $user->delete();
+
+            ActivityLog::create([
+                'user_id' => auth()->user()->id,
+                'payload' => "Updated User No. " . $user->id
+            ]);
 
             $this->emit('done', [
                 'success' => "Successfully Deleted this User"

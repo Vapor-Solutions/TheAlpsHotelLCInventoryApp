@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Departments;
 
+use App\Models\ActivityLog;
 use App\Models\Department;
 use App\Models\Log;
 use Livewire\Component;
@@ -24,11 +25,11 @@ class Create extends Component
     {
         $this->validate();
         $this->department->save();
-        $log = new Log();
-        $log->user_id = auth()->user()->id;
-        $log->model = 'App\Models\Department';
-        $log->payload = "<strong>" . auth()->user()->name . "</strong> has created a Department <strong>No. " . $this->department->id . "</strong> in the system";
-        $log->save();
+
+        ActivityLog::create([
+            'user_id' => auth()->user()->id,
+            'payload' => "Created Department No. " . $this->department->id
+        ]);
 
         return redirect()->route('admin.departments.index');
 

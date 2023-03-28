@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\ProductCategories;
 
+use App\Models\ActivityLog;
 use App\Models\ProductCategory;
 use Livewire\Component;
 
@@ -15,6 +16,7 @@ class Index extends Component
 
     public function mount()
     {
+        $this->middleware('permission:Delete Product Categories')->only('delete');
         $this->productCategories = ProductCategory::all();
     }
 
@@ -30,6 +32,11 @@ class Index extends Component
         }
 
         $cat->delete();
+
+        ActivityLog::create([
+            'user_id' => auth()->user()->id,
+            'payload' => "Deleted Product Category No. $cat->id"
+        ]);
         $this->emit('done', [
             'success' => "Successfully Deleted a Product Category"
         ]);
