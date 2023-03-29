@@ -140,6 +140,18 @@ return new class extends Migration
                 'title'=>'Delete Product Items'
             ],
             [
+                'title'=>'Create Purchases'
+            ],
+            [
+                'title'=>'Read Purchases'
+            ],
+            [
+                'title'=>'Update Purchases'
+            ],
+            [
+                'title'=>'Delete Purchases'
+            ],
+            [
                 'title'=>'Create Payment Methods'
             ],
             [
