@@ -5,9 +5,13 @@ namespace App\Http\Livewire\Admin\Invoices;
 use App\Models\ActivityLog;
 use App\Models\Invoice;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Index extends Component
 {
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
+
     public function mount()
     {
         // $this->middleware('permission:Delete Invoices')->only('delete');
@@ -31,7 +35,7 @@ class Index extends Component
     {
 
         return view('livewire.admin.invoices.index', [
-            'invoices' => Invoice::all()
+            'invoices' => Invoice::orderBy('id','DESC')->paginate(10)
         ]);
     }
 }

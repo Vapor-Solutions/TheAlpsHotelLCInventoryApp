@@ -16,6 +16,7 @@ class Dashboard extends Component
 {
 
     use WithPagination;
+    protected $paginationTheme = 'bootstrap';
 
     public $products = [];
     public $departments = [];
