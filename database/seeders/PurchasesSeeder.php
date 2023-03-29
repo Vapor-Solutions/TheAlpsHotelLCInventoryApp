@@ -18,12 +18,12 @@ class PurchasesSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($i = 0; $i < 150; $i++) {
+        for ($i = 0; $i < 400; $i++) {
             $purchase = new Purchase();
             $purchase->purchase_date = Carbon::now()->startOfMonth()->toDateString();
             $purchase->supplier_id = rand(1, count(Supplier::all()));
             $purchase->save();
-            $quantity = rand(20, 70);
+            $quantity = rand(50, 120);
             for ($j = 0; $j < $quantity; $j++) {
                 $productItem = new ProductItem();
                 $productItem->product_description_id = rand(1, count(ProductDescription::all()));

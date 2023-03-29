@@ -43,6 +43,13 @@ class Create extends Component
     {
         $this->validate();
 
+        if (in_array(1, $this->roles) && !auth()->user()->id == 1) {
+            $this->emit('done', [
+                'error' => "You can't Create a Super Administrator. "
+            ]);
+            return;
+        }
+
         $this->user->password = Hash::make('1234567890');
         $this->user->save();
 

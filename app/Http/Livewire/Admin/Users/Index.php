@@ -22,6 +22,12 @@ class Index extends Component
             ]);
             return;
         }
+        if ($user->id == auth()->user()->id) {
+            $this->emit('done', [
+                'error' => "Unafanya Nini?? You can't Delete yourself from the system"
+            ]);
+            return;
+        }
         if ($user->hasRole(Role::find(1)->title) xor auth()->user()->hasPermissionTo('Delete Admins')) {
             $user->roles()->detach();
             $user->delete();
