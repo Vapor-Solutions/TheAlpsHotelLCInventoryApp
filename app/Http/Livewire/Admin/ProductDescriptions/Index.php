@@ -12,8 +12,8 @@ class Index extends Component
     use WithPagination;
     // public $product_descriptions;
 
-    public $products,$inventory_value, $actual_inventory;
-    protected $paginationTheme  ='bootstrap';
+    public $products, $inventory_value, $actual_inventory;
+    protected $paginationTheme  = 'bootstrap';
 
     public function mount()
     {
@@ -22,7 +22,7 @@ class Index extends Component
         $this->products = ProductDescription::all();
         // $this->customers = Customer::all();
         foreach ($this->products as $product) {
-            $this->inventory_value += ($product->price*count($product->productItems));
+            $this->inventory_value += ($product->price * count($product->productItems));
             $this->actual_inventory += ($product->actual_value);
         }
     }
@@ -49,13 +49,13 @@ class Index extends Component
 
 
         $this->emit('done', [
-            'success'=>'Successfully Deleted the Product Description'
+            'success' => 'Successfully Deleted the Product Description'
         ]);
     }
     public function render()
     {
         return view('livewire.admin.product-descriptions.index', [
-            'product_descriptions'=>ProductDescription::paginate(5)
+            'product_descriptions' => ProductDescription::orderBy('id', 'DESC')->paginate(5)
         ]);
     }
 }
