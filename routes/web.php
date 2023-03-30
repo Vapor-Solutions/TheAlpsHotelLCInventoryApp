@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Admin;
 use App\Models\Invoice;
+use App\Models\PurchaseOrder;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 
@@ -103,6 +104,7 @@ Route::prefix('admin')->middleware([
         Route::get('/create', Admin\PaymentMethods\Create::class)->name('admin.payment-methods.create');
         Route::get('/{id}/edit', Admin\PaymentMethods\Edit::class)->name('admin.payment-methods.edit');
     });
+
     // // Sales Payments
     // Route::middleware('permission:Read Admins')->prefix('sales-payments')->group(function () {
     //     Route::get('/', Admin\SalesPayments\Index::class)->name('admin.sales-payments.index');
@@ -158,10 +160,18 @@ Route::prefix('admin')->middleware([
     });
 
     // Purchase Orders
-    Route::middleware('permission:Read Purchase Orders')->prefix('purchase_orders')->group(function () {
+    Route::middleware('permission:Read Quotations')->prefix('purchase_orders')->group(function () {
         Route::get('/', Admin\PurchaseOrders\Index::class)->name('admin.purchase-orders.index');
         Route::get('/create', Admin\PurchaseOrders\Create::class)->name('admin.purchase-orders.create');
         Route::get('/{id}/edit', Admin\PurchaseOrders\Edit::class)->name('admin.purchase-orders.edit');
         Route::get('/{id}/show', Admin\PurchaseOrders\Show::class)->name('admin.purchase-orders.show');
+        Route::get('/{id}/order', function ($id) {
+            $pdf = Pdf::loadView('documents.purchase-order', [
+                'order' => PurchaseOrder::find($id)
+            ]);
+
+            $date = Carbon::parse(PurchaseOrder::find($id)->created_at)->toDateString();
+            return $pdf->download($date . '-LPO#' . $id . '.pdf');
+        })->name('admin.purchase-orders.order');
     });
 });

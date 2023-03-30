@@ -30,7 +30,12 @@ class Index extends Component
 
     public function delete($id)
     {
-        // ProductDescription::find($id)->delete();
+        if(!auth()->user()->hasPermissionTo('Delete Product Descriptions')){
+            $this->emit('done', [
+                'warning'=>'You are not permitted to delete the Product Descriptions'
+            ]);
+            return;
+        }
         $desc =  ProductDescription::find($id);
 
         if ($desc->productItems->count() > 0) {

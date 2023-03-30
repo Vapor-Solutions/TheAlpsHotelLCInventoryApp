@@ -297,7 +297,7 @@
             </div>
         </li>
     @endif
-    @if (auth()->user()->hasPermissionTo('Read Purchase Orders'))
+    @if (auth()->user()->hasPermissionTo('Read Quotations'))
         <!-- Purchase Orders Links-->
         <li class="nav-item {{ request()->routeIs('admin.purchase-orders*') ? 'active' : '' }}">
             <a class="nav-link {{ request()->routeIs('admin.purchase-orders*') ? '' : 'collapsed' }}" href="#"

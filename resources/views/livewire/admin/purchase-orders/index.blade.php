@@ -35,6 +35,13 @@
                                     <td>
                                         <div class="d-flex flex-row justify-content-center">
                                             <div class="flex-col mx-2">
+                                                <a href="{{ route('admin.purchase-orders.order', $order->id) }}"
+                                                    class="btn btn-dark" target="_blank">
+                                                    <i class="fas fa-file-pdf"></i>
+                                                </a>
+                                            </div>
+                                        <div class="d-flex flex-row justify-content-center">
+                                            <div class="flex-col mx-2">
                                                 <a href="{{ route('admin.purchase-orders.show', $order->id) }}"
                                                     class="btn btn-dark">
                                                     <i class="fas fa-list"></i>
