@@ -16,18 +16,19 @@ class Index extends Component
     public function delete($id)
     {
         $user = User::find($id);
-        if ($user->id == 1) {
-            $this->emit('done', [
-                'error' => "This User can't be Deleted from the System"
-            ]);
-            return;
-        }
         if ($user->id == auth()->user()->id) {
             $this->emit('done', [
                 'error' => "Unafanya Nini?? You can't Delete yourself from the system"
             ]);
             return;
         }
+        if ($user->id == 1) {
+            $this->emit('done', [
+                'error' => "This User can't be Deleted from the System"
+            ]);
+            return;
+        }
+
         if ($user->hasRole(Role::find(1)->title) || auth()->user()->hasPermissionTo('Delete Admins')) {
             $user->roles()->detach();
             $user->delete();
