@@ -28,7 +28,7 @@ class Index extends Component
             ]);
             return;
         }
-        if ($user->hasRole(Role::find(1)->title) xor auth()->user()->hasPermissionTo('Delete Admins')) {
+        if ($user->hasRole(Role::find(1)->title) || auth()->user()->hasPermissionTo('Delete Admins')) {
             $user->roles()->detach();
             $user->delete();
 
