@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Admin;
 use App\Models\Invoice;
+use App\Models\ProductDescription;
 use App\Models\PurchaseOrder;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
@@ -91,6 +92,16 @@ Route::prefix('admin')->middleware([
         Route::get('/create', Admin\ProductDescriptions\Create::class)->name('admin.product-descriptions.create');
         Route::get('/{id}/edit', Admin\ProductDescriptions\Edit::class)->name('admin.product-descriptions.edit');
         Route::get('/{id}/show', Admin\ProductDescriptions\Show::class)->name('admin.product-descriptions.show');
+        Route::get('/stock-sheet', function(){
+            $products = ProductDescription::all();
+
+            $stock_sheet = Pdf::loadView('documents.stock-sheet',[
+                'products'=>$products
+            ]);
+
+            // return $stock_sheet->download('stock-sheet-'.Carbon::now()->toDateTimeString().'.pdf');
+            return $stock_sheet->stream();
+        })->name('admin.product-descriptions.stock-sheet');
     });
     // Product Items
     // Route::middleware('permission:Read Product Items')->prefix('product-items')->group(function () {

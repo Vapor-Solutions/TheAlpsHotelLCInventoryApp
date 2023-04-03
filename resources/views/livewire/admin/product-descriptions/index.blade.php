@@ -120,5 +120,6 @@
                 </div>
             </div>
         </div>
+        <a href="{{ route('admin.product-descriptions.stock-sheet') }}" target="_blank" class="btn btn-secondary">Download Stock Sheet</a>
     </div>
 </div>
