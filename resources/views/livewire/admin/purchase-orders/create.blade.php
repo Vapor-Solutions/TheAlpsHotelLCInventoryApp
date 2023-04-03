@@ -33,14 +33,14 @@
                                         <option selected>Select one</option>
 
                                         @foreach ($productDescriptions as $product)
-                                        <option value="{{ $product->id }}">
-                                            {{ $product->brand->name != 'Miscellaneous' ? $product->brand->name : '' }}
-                                            {{ $product->title }}
-                                            -
-                                            {{ $product->quantity . $product->unit->symbol }}
-                                            <br>
-                                            <sup>{{ $product->description != '-' ? $product->description : '' }}</sup>
-                                        </option>
+                                            <option value="{{ $product->id }}">
+                                                {{ $product->brand->name != 'Miscellaneous' ? $product->brand->name : '' }}
+                                                {{ $product->title }}
+                                                -
+                                                {{ $product->quantity . $product->unit->symbol }}
+                                                <br>
+                                                <sup>{{ $product->description != '-' ? $product->description : '' }}</sup>
+                                            </option>
                                         @endforeach
                                     </select>
                                     @error('product_id')
@@ -106,9 +106,13 @@
 
                                             <tr class="">
                                                 <td scope="row">{{ $product->id }}</td>
-                                                <td>{{ $product->title }} -
-                                                    {{ $product->quantity . $product->unit->symbol }}</td>
-                                                <td>{{ $item[1] }}</td>
+                                                <td>{{ $product->brand->name != 'Miscellaneous' ? $product->brand->name : '' }}
+                                                    {{ $product->title }}
+                                                    -
+                                                    {{ $product->quantity . $product->unit->symbol }}
+                                                    <br>
+                                                    <sup>{{ $product->description != '-' ? $product->description : '' }}</sup>
+                                                </td>
                                                 <td>
                                                     <x-currency />{{ number_format($product->price, 2) }}
                                                 </td>
