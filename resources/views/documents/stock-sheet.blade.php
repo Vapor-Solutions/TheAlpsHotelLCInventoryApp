@@ -41,16 +41,20 @@
             </thead>
             <tbody>
                 @foreach (App\Models\ProductCategory::all() as $category)
-                <tr>
-                    <td colspan="3" style="text-align: center; font-size:16px; font-weight:bold; text-transform:capitalize;">{{ $category->title }}</td>
-                </tr>
+                    <tr>
+                        <td colspan="3"
+                            style="text-align: center; font-size:16px; font-weight:bold; text-transform:capitalize;">
+                            {{ $category->title }}</td>
+                    </tr>
                     @foreach ($products as $product)
                         @if ($product->product_category_id == $category->id)
-                        <tr class="">
-                            <td scope="row">{{ $product->id }}</td>
-                            <td><span style="color: #3b454e">{{ $product->brand->name }}</span> {{ $product->title }} - {{ $product->quantity }}{{ $product->unit->symbol }}</td>
-                            <td></td>
-                        </tr>
+                            <tr class="">
+                                <td scope="row">{{ $product->id }}</td>
+                                <td><span
+                                        style="color: #3b454e">{{ $product->brand->name != 'Miscellaneous' ? $product->brand->name : '' }}</span>
+                                    {{ $product->title }} - {{ $product->quantity }}{{ $product->unit->symbol }}</td>
+                                <td></td>
+                            </tr>
                         @endif
                     @endforeach
                 @endforeach
