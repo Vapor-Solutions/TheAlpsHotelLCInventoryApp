@@ -99,8 +99,8 @@ Route::prefix('admin')->middleware([
                 'products'=>$products
             ]);
 
-            // return $stock_sheet->download('stock-sheet-'.Carbon::now()->toDateTimeString().'.pdf');
-            return $stock_sheet->stream();
+            return $stock_sheet->download('stock-sheet-'.Carbon::now()->toDateTimeString().'.pdf');
+            // return $stock_sheet->stream();
         })->name('admin.product-descriptions.stock-sheet');
     });
     // Product Items
