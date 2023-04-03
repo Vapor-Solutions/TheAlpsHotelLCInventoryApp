@@ -52,7 +52,8 @@
                                 <td scope="row">{{ $product->id }}</td>
                                 <td><span
                                         style="color: #0c436b">{{ $product->brand->name != 'Miscellaneous' ? $product->brand->name : '' }}</span>
-                                    {{ $product->title }} - {{ $product->quantity }}{{ $product->unit->symbol }}</td>
+                                    {{ $product->title }} - {{ $product->quantity }}{{ $product->unit->symbol }}
+                                    {{ $product->description != '-' ? $product->description : '' }}</td>
                                 <td></td>
                             </tr>
                         @endif

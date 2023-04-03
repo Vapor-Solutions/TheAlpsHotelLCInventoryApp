@@ -33,8 +33,14 @@
                                         <option selected>Select one</option>
 
                                         @foreach ($productDescriptions as $product)
-                                            <option value="{{ $product->id }}">{{ $product->title }} -
-                                                {{ $product->quantity . $product->unit->symbol }}</option>
+                                        <option value="{{ $product->id }}">
+                                            {{ $product->brand->name != 'Miscellaneous' ? $product->brand->name : '' }}
+                                            {{ $product->title }}
+                                            -
+                                            {{ $product->quantity . $product->unit->symbol }}
+                                            <br>
+                                            <sup>{{ $product->description != '-' ? $product->description : '' }}</sup>
+                                        </option>
                                         @endforeach
                                     </select>
                                     @error('product_id')
@@ -136,7 +142,7 @@
                                         <tr class="my-3">
                                             <td style="border-top:0.5px solid #858796" colspan="5"></td>
                                         </tr>
-                                        <tr>
+                                        {{-- <tr>
                                             <td colspan="3"></td>
                                             <td class="text-right">Total</td>
                                             <td class="text-right">
@@ -149,10 +155,10 @@
                                             <td class="text-right">
                                                 <x-currency />{{ number_format(($complete_total * 16) / 116, 2) }}
                                             </td>
-                                        </tr>
+                                        </tr> --}}
                                         <tr>
                                             <td colspan="3"></td>
-                                            <td class="text-right">Complete Total (16%)</td>
+                                            <td class="text-right">Complete Total</td>
                                             <td class="text-right">
                                                 <x-currency />{{ number_format($complete_total, 2) }}
                                             </td>
