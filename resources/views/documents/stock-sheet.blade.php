@@ -32,11 +32,11 @@
         </div>
 
         <table class="table">
-            <thead style="background-color: #808080">
+            <thead style="background-color: #dddddd">
                 <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Item Name</th>
-                    <th scope="col">Quantity</th>
+                    <th scope="col" style="text-transform: uppercase">ID</th>
+                    <th scope="col" style="text-transform: uppercase">Item Name</th>
+                    <th scope="col" style="text-transform: uppercase">Quantity</th>
                 </tr>
             </thead>
             <tbody>
@@ -51,7 +51,7 @@
                             <tr class="">
                                 <td scope="row">{{ $product->id }}</td>
                                 <td><span
-                                        style="color: #3b454e">{{ $product->brand->name != 'Miscellaneous' ? $product->brand->name : '' }}</span>
+                                        style="color: #0c436b">{{ $product->brand->name != 'Miscellaneous' ? $product->brand->name : '' }}</span>
                                     {{ $product->title }} - {{ $product->quantity }}{{ $product->unit->symbol }}</td>
                                 <td></td>
                             </tr>
