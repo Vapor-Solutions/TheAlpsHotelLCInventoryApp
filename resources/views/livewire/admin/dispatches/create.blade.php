@@ -50,8 +50,13 @@
                                             <option selected>Select one</option>
 
                                             @foreach ($productDescriptions as $product)
-                                                <option value="{{ $product->id }}">{{ $product->title }} -
+                                                <option value="{{ $product->id }}">
+                                                    {{ $product->brand->name != 'Miscellaneous' ? $product->brand->name : '' }}
+                                                    {{ $product->title }}
+                                                    -
                                                     {{ $product->quantity . $product->unit->symbol }}
+                                                    <br>
+                                                    <sup>({{ $product->description != '-' ? $product->description : '' }})</sup>
                                                 </option>
                                             @endforeach
                                         </select>
