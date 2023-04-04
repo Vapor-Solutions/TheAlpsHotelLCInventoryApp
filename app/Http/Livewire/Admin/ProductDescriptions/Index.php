@@ -36,7 +36,6 @@ class Index extends Component
             ]);
             return;
         }
-        $desc =  ProductDescription::find($id);
 
         if ($desc->productItems->count() > 0) {
             $this->emit('done', [
@@ -45,6 +44,7 @@ class Index extends Component
             return;
         }
 
+        $desc =  ProductDescription::find($id);
         $desc->delete();
 
         ActivityLog::create([

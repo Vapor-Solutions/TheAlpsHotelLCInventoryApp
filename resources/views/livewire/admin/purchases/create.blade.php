@@ -13,7 +13,8 @@
                             <div class="col-md-6 col-12">
                                 <div class="mb-3">
                                     <label for="supplier_id" class="form-label">Supplier</label>
-                                    <select wire:model="purchase.supplier_id" class="form-control" name="supplier_id" id="supplier_id">
+                                    <select wire:model="purchase.supplier_id" class="form-control" name="supplier_id"
+                                        id="supplier_id">
                                         <option selected>Select one</option>
                                         @foreach (App\Models\Supplier::all() as $supplier)
                                             <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
@@ -27,8 +28,10 @@
                             <div class="col-md-6 col-12">
                                 <div class="mb-3">
                                     <label for="purchase" class="form-label">Purchase Date</label>
-                                    <input wire:model="purchase.purchase_date" type="date" max="{{ Carbon\Carbon::now()->toDateString() }}" class="form-control" name="purchase" id="purchase"
-                                        aria-describedby="date" placeholder="Enter the purchase date">
+                                    <input wire:model="purchase.purchase_date" type="date"
+                                        max="{{ Carbon\Carbon::now()->toDateString() }}" class="form-control"
+                                        name="purchase" id="purchase" aria-describedby="date"
+                                        placeholder="Enter the purchase date">
                                     @error('purchase.purchase_date')
                                         <small id="helpId" class="form-text text-danger">{{ $message }}</small>
                                     @enderror
@@ -42,8 +45,14 @@
                                         <option selected>Select one</option>
 
                                         @foreach ($productDescriptions as $product)
-                                            <option value="{{ $product->id }}">{{ $product->title }} -
-                                                {{ $product->quantity . $product->unit->symbol }}</option>
+                                            <option value="{{ $product->id }}">
+                                                {{ $product->brand->name != 'Miscellaneous' ? $product->brand->name : '' }}
+                                                {{ $product->title }}
+                                                -
+                                                {{ $product->quantity . $product->unit->symbol }}
+                                                <br>
+                                                <sup>{{ $product->description != '-' ? $product->description : '' }}</sup>
+                                            </option>
                                         @endforeach
                                     </select>
                                     @error('product_id')
