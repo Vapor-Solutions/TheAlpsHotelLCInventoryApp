@@ -53,7 +53,7 @@ class Show extends Component
     public function addProducts()
     {
         $this->validate([
-            'quantity' => 'required|integer|min:2',
+            'quantity' => 'required|integer|min:1',
             'price' => 'required|numeric'
         ]);
 
