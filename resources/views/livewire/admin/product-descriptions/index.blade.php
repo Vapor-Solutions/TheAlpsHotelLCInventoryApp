@@ -71,7 +71,7 @@
                                                 <button
                                                     onclick="confirm('Are You Sure you want to delete this Product Description?')||event.stopImmediatePropagation()"
                                                     wire:click="delete({{ $description->id }})" class="btn btn-danger">
-                                                    <i class="fas fa-edit"></i>
+                                                    <i class="fas fa-trash"></i>
                                                 </button>
                                             </div>
                                         </div>
