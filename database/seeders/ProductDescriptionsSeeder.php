@@ -19,7 +19,7 @@ class ProductDescriptionsSeeder extends Seeder
         $categories = ProductCategory::all();
 
         foreach ($categories as $category) {
-            for ($i = 1; $i <= rand(5, 60); $i++) {
+            for ($i = 1; $i <= rand(1, 35); $i++) {
                 if ($category->title === 'Food & Beverages') {
                     $name = $this->getFoodName();
                     $description = $this->getFoodDescription($name);
@@ -49,7 +49,7 @@ class ProductDescriptionsSeeder extends Seeder
                     'price' => $price,
                     'product_category_id' => $category->id,
                     'unit_id' => rand(1, count(Unit::all())),
-                    'quantity' => rand(2, 10000)
+                    'quantity' => rand(2, 500)
                 ]);
             }
         }

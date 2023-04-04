@@ -10,7 +10,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table
+                    <table id="datatable"
                         class="table table-striped
                     table-hover
                     table-bordered
@@ -78,7 +78,7 @@
                                     </td>
                                 </tr>
                             @endforeach
-                            <tr>
+                            {{-- <tr>
                                 <td colspan="7">
                                     <h4 class="text-center">TOTAL ON PAGE</h4>
                                 </td>
@@ -87,18 +87,19 @@
                                         <x-currency></x-currency><strong>{{ number_format($sum, 2) }}</strong>
                                     </h4>
                                 </td>
-                                <td class="{{ $actual_sum>$sum?'text-danger':($actual_sum==$sum?'text-secondary':'text-success') }}">
+                                <td
+                                    class="{{ $actual_sum > $sum ? 'text-danger' : ($actual_sum == $sum ? 'text-secondary' : 'text-success') }}">
                                     <h4>
                                         <x-currency></x-currency><strong>{{ number_format($actual_sum, 2) }}</strong>
                                     </h4>
                                 </td>
-                            </tr>
+                            </tr> --}}
                         </tbody>
                     </table>
                 </div>
-                <div class="card-footer">
+                {{-- <div class="card-footer">
                     {{ $product_descriptions->links() }}
-                </div>
+                </div> --}}
 
             </div>
             <div class="row">
@@ -114,12 +115,14 @@
                     <h4 class="text-center">
                         Actual Value of all Products
                     </h4>
-                    <h2 class="text-center {{ $actual_inventory>$inventory_value?'text-danger':($actual_inventory==$inventory_value?'text-secondary':'text-success') }} my-5">
+                    <h2
+                        class="text-center {{ $actual_inventory > $inventory_value ? 'text-danger' : ($actual_inventory == $inventory_value ? 'text-secondary' : 'text-success') }} my-5">
                         <x-currency></x-currency>{{ number_format($actual_inventory, 2) }}
                     </h2>
                 </div>
             </div>
         </div>
-        <a href="{{ route('admin.product-descriptions.stock-sheet') }}" target="_blank" class="btn btn-secondary">Download Stock Sheet</a>
+        <a href="{{ route('admin.product-descriptions.stock-sheet') }}" target="_blank"
+            class="btn btn-secondary">Download Stock Sheet</a>
     </div>
 </div>

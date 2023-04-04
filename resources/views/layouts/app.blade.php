@@ -18,6 +18,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
+    <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
     <link href="/css/sb-admin-2.min.css" rel="stylesheet">
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -113,6 +114,8 @@
     @livewireScripts
     @stack('scripts')
 
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 
     <script>
         Livewire.on('done', (e) => {
@@ -140,7 +143,10 @@
                     text: e.error
                 })
             }
-        })
+        });
+
+
+        $('#datatable').DataTable();
     </script>
 
 </body>

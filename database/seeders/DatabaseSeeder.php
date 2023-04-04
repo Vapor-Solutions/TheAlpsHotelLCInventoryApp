@@ -21,11 +21,11 @@ class DatabaseSeeder extends Seeder
             ProductDescriptionsSeeder::class,
             ProductItemsSeeder::class,
             PurchasesSeeder::class,
-            DispatchSeeder::class,
+            // DispatchSeeder::class,
             // SalesSeeder::class,
             // SalesPaymentsSeeder::class,
-            PurchasePaymentsSeeder::class,
-            PurchaseOrdersSeeder::class,
+            // PurchasePaymentsSeeder::class,
+            // PurchaseOrdersSeeder::class,
         ]);
     }
 }

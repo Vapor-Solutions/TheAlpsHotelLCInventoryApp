@@ -16,7 +16,7 @@ class ProductItemsSeeder extends Seeder
     public function run(): void
     {
         foreach (ProductDescription::all() as $desc) {
-            for ($i = 0; $i < rand(40, 250); $i++) {
+            for ($i = 0; $i < rand(1, 50); $i++) {
                 $sku = SkuGenerator::generate();
 
                 // Create a new product with the generated SKU

@@ -60,7 +60,7 @@ class Index extends Component
     public function render()
     {
         return view('livewire.admin.product-descriptions.index', [
-            'product_descriptions' => ProductDescription::orderBy('id', 'DESC')->paginate(5)
+            'product_descriptions' => ProductDescription::orderBy('id', 'DESC')->get()
         ]);
     }
 }

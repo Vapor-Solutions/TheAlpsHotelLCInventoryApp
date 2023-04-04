@@ -18,7 +18,7 @@ class PurchasesSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($i = 0; $i < 400; $i++) {
+        for ($i = 0; $i < 15; $i++) {
             $purchase = new Purchase();
             $purchase->purchase_date = Carbon::now()->startOfMonth()->toDateString();
             $purchase->supplier_id = rand(1, count(Supplier::all()));
