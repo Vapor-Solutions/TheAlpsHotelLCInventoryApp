@@ -36,6 +36,12 @@ class Edit extends Component
 
     public function save()
     {
+        if(!auth()->user()->hasPermissionTo('Update Product Descriptions')){
+            $this->emit('done', [
+                'warning'=>'You are not permitted to Edit the Product Descriptions'
+            ]);
+            return;
+        }
         $this->validate();
 
         $this->product_description->save();

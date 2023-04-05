@@ -14,6 +14,12 @@ class Index extends Component
 
     public function delete($id)
     {
+        if(!auth()->user()->hasPermissionTo('Delete Purchases')){
+            $this->emit('done', [
+                'warning'=>'You are not permitted to delete the Purchases'
+            ]);
+            return;
+        }
         $purchase = Purchase::find($id);
         $purchase->productItems()->delete();
         $purchase->productItems()->detach();
