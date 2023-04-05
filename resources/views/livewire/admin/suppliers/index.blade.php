@@ -41,7 +41,8 @@
                                         }
                                     @endphp
 
-                                    {{ $balance }}
+                                    <x-currency></x-currency>
+                                    {{ number_format($balance, 2) }}
                                 </td>
                                 <td>
                                     <div class="d-flex flex-row justify-content-center">
