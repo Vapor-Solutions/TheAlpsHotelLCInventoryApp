@@ -58,7 +58,7 @@
                                     @if ($count > 0)
                                         <tr class="">
                                             <td scope="row">{{ $product->id }}</td>
-                                            <td>{{ $product->title }}</td>
+                                            <td>{{ $product->brand->name != 'Miscellaneous' ? $product->brand->name : '' }} {{ $product->title }}</td>
                                             <td>{{ $product->quantity . $product->unit->symbol }}</td>
                                             <td>{{ $count }}</td>
                                         </tr>
