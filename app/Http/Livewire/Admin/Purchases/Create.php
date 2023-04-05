@@ -44,14 +44,14 @@ class Create extends Component
 
 
             for ($i = 0; $i < count($this->productsList); $i++) {
-                if (intval($this->productsList[$i][0]) == intval($this->product_id) && intval($this->productsList[$i][2]) == intval($this->price)) {
+                if (intval($this->productsList[$i][0]) == intval($this->product_id) && intval($this->productsList[$i][2]) == floatval($this->price)) {
                     $this->productsList[$i][1] += intval($this->quantity);
                     $count++;
                 }
             }
         }
         if ($count == 0) {
-            array_push($this->productsList, [intval($this->product_id), intval($this->quantity), intval($this->price)]);
+            array_push($this->productsList, [intval($this->product_id), intval($this->quantity), floatval($this->price)]);
         }
         $this->reset(['product_id', 'quantity', 'price']);
     }
