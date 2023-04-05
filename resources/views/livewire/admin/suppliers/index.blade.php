@@ -17,6 +17,7 @@
                             <th scope="col">Phone Number</th>
                             <th scope="col">Affiliated Company</th>
                             <th scope="col">Address</th>
+                            <th scope="col">Balance Unpaid</th>
                             <th scope="col" class="text-center">Actions</th>
                         </tr>
                     </thead>
@@ -29,6 +30,19 @@
                                 <td>{{ $supplier->phone_number }}</td>
                                 <td>{{ $supplier->company_name }}</td>
                                 <td>{{ $supplier->address ?? 'NOT SET' }}</td>
+                                <td>
+                                    @php
+                                        $balance = 0;
+
+                                        if ($supplier->purchases) {
+                                            foreach ($supplier->purchases as $purchase) {
+                                                $balance += $purchase->balance;
+                                            }
+                                        }
+                                    @endphp
+
+                                    {{ $balance }}
+                                </td>
                                 <td>
                                     <div class="d-flex flex-row justify-content-center">
                                         <a href="{{ route('admin.suppliers.edit', $supplier->id) }}"
