@@ -74,7 +74,7 @@
                             <div class="col-md-6 col-12">
                                 <div class="mb-3">
                                     <label for="" class="form-label">Price</label>
-                                    <input wire:model="price" type="number" min="1" step="1"
+                                    <input wire:model="price" type="number" min="1" step="0.01"
                                         class="form-control" name="" id="" aria-describedby="helpId"
                                         placeholder="Recomm: KES {{ number_format(App\Models\ProductDescription::find(intval($product_id))->price ?? 0) }}">
                                     @error('price')
