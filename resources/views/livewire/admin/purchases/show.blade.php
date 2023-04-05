@@ -17,7 +17,9 @@
                 Nairobi, KE</div>
         </div>
         <div class="row justify-content-end mt-3">
-            <div class="col-12 "><p class="me-auto"><u>Supplier</u>: {{ $purchase->supplier->name }}</p></div>
+            <div class="col-12 ">
+                <p class="me-auto"><u>Supplier</u>: {{ $purchase->supplier->name }}</p>
+            </div>
         </div>
 
         <div class="row">
@@ -59,7 +61,8 @@
                                     @if ($count > 0)
                                         <tr class="">
                                             <td scope="row">{{ $product->id }}</td>
-                                            <td>{{ $product->title }}</td>
+                                            <td>{{ $product->brand->name != 'Miscellaneous' ? $product->brand->name : '' }}
+                                                {{ $product->title }}</td>
                                             <td>{{ $product->quantity . $product->unit->symbol }}</td>
                                             <td>{{ $count }}</td>
                                             <td>
@@ -72,8 +75,14 @@
                                     <td colspan="3">
                                         <h5 class="text-center">Totals</h5>
                                     </td>
-                                    <td><h5 class="text-dark"><strong>{{ $total_count }} items</strong></h5></td>
-                                    <td><h5 class="text-success"><strong><x-currency/>{{ number_format($total_cost, 2) }}</strong></h5></td>
+                                    <td>
+                                        <h5 class="text-dark"><strong>{{ $total_count }} items</strong></h5>
+                                    </td>
+                                    <td>
+                                        <h5 class="text-success"><strong>
+                                                <x-currency />{{ number_format($total_cost, 2) }}
+                                            </strong></h5>
+                                    </td>
                                 </tr>
 
                             </tbody>
