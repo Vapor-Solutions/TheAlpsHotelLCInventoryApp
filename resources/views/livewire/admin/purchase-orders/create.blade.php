@@ -114,6 +114,9 @@
                                                     <sup>{{ $product->description != '-' ? $product->description : '' }}</sup>
                                                 </td>
                                                 <td>
+                                                    {{ $item[1] }}
+                                                </td>
+                                                <td>
                                                     <x-currency />{{ number_format($product->price, 2) }}
                                                 </td>
                                                 @php
