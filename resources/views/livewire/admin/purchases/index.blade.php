@@ -17,6 +17,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Purchase Date</th>
+                                <th>Supplier's Name</th>
                                 <th>Number of Products</th>
                                 <th>Total Spent</th>
                                 <th>Total Paid</th>
@@ -29,6 +30,7 @@
                                 <tr class="">
                                     <td scope="row">{{ $purchase->id }}</td>
                                     <td>{{ Carbon\Carbon::parse($purchase->purchase_date)->format('jS F, Y') }}</td>
+                                    <td>{{ $purchase->supplier->company_name??$purchase->supplier->name }}</td>
                                     <td>{{ count($purchase->productItems) }}</td>
                                     <td>
                                         <x-currency></x-currency>{{ number_format($purchase->total_cost, 2) }}
