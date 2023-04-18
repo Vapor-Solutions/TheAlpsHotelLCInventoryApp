@@ -54,12 +54,14 @@ class Create extends Component
             array_push($this->productsList, [intval($this->product_id), intval($this->quantity), floatval($this->price)]);
         }
         $this->reset(['product_id', 'quantity', 'price']);
+        $this->productDescriptions = ProductDescription::all();
     }
 
 
     public function remove($key)
     {
         unset($this->productsList[$key]);
+        $this->productDescriptions = ProductDescription::all();
     }
 
 
@@ -93,6 +95,7 @@ class Create extends Component
             'success' => 'Successfully Made the Purchase No. #' . $this->purchase->id
         ]);
         $this->purchase = new Purchase();
+        $this->productDescriptions = ProductDescription::all();
     }
 
 
