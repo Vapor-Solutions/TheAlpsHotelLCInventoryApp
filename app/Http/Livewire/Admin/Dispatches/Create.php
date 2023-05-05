@@ -56,7 +56,7 @@ class Create extends Component
 
                     $this->productsList[$i][1] += intval($this->quantity);
                     $count++;
-                }else {
+                } else {
                     if ($this->quantity > ProductDescription::find($this->product_id)->available_items) {
                         throw ValidationException::withMessages([
                             'quantity' => 'The quantity surpasses the number of available items'
@@ -74,7 +74,7 @@ class Create extends Component
 
     public function remove($key)
     {
-        unset($this->productsList[$key]);
+        array_splice($this->productsList, $this->productsList[$key], 1);
     }
 
 
