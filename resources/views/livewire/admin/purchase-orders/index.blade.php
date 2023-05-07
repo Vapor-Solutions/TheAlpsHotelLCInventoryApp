@@ -16,6 +16,7 @@
                             <caption></caption>
                             <tr>
                                 <th>ID</th>
+                                <th>Supplier Name</th>
                                 <th>Created On</th>
                                 <th>Number of Products</th>
                                 <th>Total Cost</th>
@@ -26,6 +27,7 @@
                             @foreach ($orders as $order)
                                 <tr class="">
                                     <td scope="row">{{ $order->id }}</td>
+                                    <td>{{ $order->supplier->name }}</td>
                                     <td>{{ Carbon\Carbon::parse($order->created_at)->format('jS F, Y h:i:sA') }}</td>
                                     <td>{{ count($order->productDescriptions) }}</td>
                                     <td>
