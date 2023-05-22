@@ -50,6 +50,9 @@ class Dashboard extends Component
         foreach ($this->products as $product) {
             $this->inventory_value += $product->price;
         }
+        foreach (Dispatch::all() as $dispatch1) {
+            $this->inventory_value -= $dispatch1->total_cost;
+        }
 
         $this->readyToLoad = true;
     }
