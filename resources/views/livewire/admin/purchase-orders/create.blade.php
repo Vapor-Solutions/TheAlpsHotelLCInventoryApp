@@ -4,76 +4,111 @@
 
         <div class="row">
             <div class="col-md-4 col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h5>Add Products</h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6 col-12">
-                                <div class="mb-3">
-                                    <label for="supplier_id" class="form-label">Supplier</label>
-                                    <select wire:model="order.supplier_id" class="form-control" name="supplier_id"
-                                        id="supplier_id">
-                                        <option selected>Select one</option>
-                                        @foreach (App\Models\Supplier::all() as $supplier)
-                                            <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('order.supplier_id')
-                                        <small id="helpId" class="form-text text-danger">{{ $message }}</small>
-                                    @enderror
-                                </div>
+                <div class="row">
+                    <div class="col-12 mb-5">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Document Details</h5>
                             </div>
-                            <div class="col-12">
-                                <div class="mb-3">
-                                    <label for="" class="form-label">Product Description</label>
-                                    <select wire:model="product_id" class="form-control" name="" id="">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6 col-12">
+                                        <div class="mb-3">
+                                            <label for="supplier_id" class="form-label">Supplier</label>
+                                            <select wire:model="order.supplier_id" class="form-control"
+                                                name="supplier_id" id="supplier_id">
+                                                <option selected>Select one</option>
+                                                @foreach (App\Models\Supplier::all() as $supplier)
+                                                    <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
+                                                @endforeach
+                                            </select>
 
-                                        <option selected>Select one</option>
-
-                                        @foreach ($productDescriptions as $product)
-                                            <option value="{{ $product->id }}">
-                                                {{ $product->brand->name != 'Miscellaneous' ? $product->brand->name : '' }}
-                                                {{ $product->title }}
-                                                -
-                                                {{ $product->quantity . $product->unit->symbol }}
-                                                <br>
-                                                <sup>{{ $product->description != '-' ? $product->description : '' }}</sup>
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    @error('product_id')
-                                        <small id="helpId" class="form-text text-danger">{{ $message }}</small>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-12">
-                                <div class="mb-3">
-                                    <label for="" class="form-label">Quantity</label>
-                                    <input wire:model="quantity" type="number" min="1" step="1"
-                                        class="form-control" name="" id="" aria-describedby="helpId"
-                                        placeholder="Enter the Number of items you want to buy">
-                                    @error('quantity')
-                                        <small id="helpId" class="form-text text-danger">{{ $message }}</small>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-12">
-                                <div class="mb-3">
-                                    <label for="" class="form-label">Price</label>
-                                    <input type="number" min="1" step="1" disabled
-                                        value=" {{ number_format(App\Models\ProductDescription::find(intval($product_id))->price ?? 0) }}"
-                                        class="form-control" name="" id="" aria-describedby="helpId">
-                                    @error('price')
-                                        <small id="helpId" class="form-text text-danger">{{ $message }}</small>
-                                    @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">Expected Delivery Date &
+                                                Time</label>
+                                            <input type="dateTime-local" class="form-control" name=""
+                                                id="" aria-describedby="helpId"
+                                                placeholder="Enter the Date and Time you expect">
+                                            @error('order.expected_delivery_dateTime')
+                                                <small id="helpId"
+                                                    class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <button class="btn btn-dark" wire:click="addToCart">Add To List</button>
+                    </div>
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Add Products</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+
+                                    <div class="col-12">
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">Product Description</label>
+                                            <select wire:model="product_id" class="form-control" name=""
+                                                id="">
+
+                                                <option selected>Select one</option>
+
+                                                @foreach ($productDescriptions as $product)
+                                                    <option value="{{ $product->id }}">
+                                                        {{ $product->brand->name != 'Miscellaneous' ? $product->brand->name : '' }}
+                                                        {{ $product->title }}
+                                                        -
+                                                        {{ $product->quantity . $product->unit->symbol }}
+                                                        <br>
+                                                        <sup>{{ $product->description != '-' ? $product->description : '' }}</sup>
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            @error('product_id')
+                                                <small id="helpId"
+                                                    class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">Quantity</label>
+                                            <input wire:model="quantity" type="number" min="1" step="1"
+                                                class="form-control" name="" id=""
+                                                aria-describedby="helpId"
+                                                placeholder="Enter the Number of items you want to buy">
+                                            @error('quantity')
+                                                <small id="helpId"
+                                                    class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">Price</label>
+                                            <input type="number" min="1" step="1" disabled
+                                                value=" {{ number_format(App\Models\ProductDescription::find(intval($product_id))->price ?? 0) }}"
+                                                class="form-control" name="" id=""
+                                                aria-describedby="helpId">
+                                            @error('price')
+                                                <small id="helpId"
+                                                    class="form-text text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-dark" wire:click="addToCart">Add To List</button>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
+
             </div>
             <div class="col-md-8 col-12">
                 <div class="card">

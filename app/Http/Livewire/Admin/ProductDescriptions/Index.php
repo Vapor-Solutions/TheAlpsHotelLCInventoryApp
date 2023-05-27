@@ -12,14 +12,16 @@ class Index extends Component
     use WithPagination;
     // public $product_descriptions;
 
-    public $products, $inventory_value, $actual_inventory;
+    public $products = [];
+    public $inventory_value, $actual_inventory;
     protected $paginationTheme  = 'bootstrap';
+    public $searchTerm;
 
     public function mount()
     {
         // $this->product_descriptions = ProductDescription::all();
         // $this->middleware('permission:Delete Product Descriptions')->only('delete');
-        $this->products = ProductDescription::all();
+        // $this->products = ProductDescription::all();
         // $this->customers = Customer::all();
         foreach ($this->products as $product) {
             $this->inventory_value += ($product->price * count($product->productItems));
@@ -27,12 +29,26 @@ class Index extends Component
         }
     }
 
+    public function search()
+    {
+
+        $this->products = ProductDescription::where('title', 'like', '%' . $this->searchTerm . '%')
+            ->orWhereHas('brand', function ($query) {
+                $query->where('name', 'like', '%' . $this->searchTerm . '%');
+            })
+            ->orWhereHas('category', function ($query) {
+                $query->where('title', 'like', '%' . $this->searchTerm . '%');
+            })
+            ->orderBy('id', 'DESC')
+            ->get();
+    }
+
 
     public function delete($id)
     {
-        if(!auth()->user()->hasPermissionTo('Delete Product Descriptions')){
+        if (!auth()->user()->hasPermissionTo('Delete Product Descriptions')) {
             $this->emit('done', [
-                'warning'=>'You are not permitted to delete the Product Descriptions'
+                'warning' => 'You are not permitted to delete the Product Descriptions'
             ]);
             return;
         }
@@ -59,8 +75,6 @@ class Index extends Component
     }
     public function render()
     {
-        return view('livewire.admin.product-descriptions.index', [
-            'product_descriptions' => ProductDescription::orderBy('id', 'DESC')->get()
-        ]);
+        return view('livewire.admin.product-descriptions.index');
     }
 }

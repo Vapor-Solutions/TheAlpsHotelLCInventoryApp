@@ -27,6 +27,11 @@ class ProductDescription extends Model
         return $this->belongsTo(Unit::class);
     }
 
+    public function category()
+    {
+        return $this->belongsTo(ProductCategory::class, 'product_category_id');
+    }
+
     public function productItems()
     {
         return $this->hasMany(ProductItem::class,  'product_description_id','id');
