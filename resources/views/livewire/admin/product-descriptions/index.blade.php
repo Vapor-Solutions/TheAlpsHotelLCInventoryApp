@@ -22,7 +22,6 @@
 
             align-middle">
                 <thead class="">
-                    <caption></caption>
                     <tr>
                         <th>ID</th>
                         <th>Brand Name</th>
@@ -56,13 +55,13 @@
                             <td>
                                 <div class="d-flex flex-row justify-content-center">
                                     <div class="flex-col mx-2">
-                                        <a href="{{ route('admin.product-descriptions.show', $description->id) }}"
+                                        <a href="{{ route('admin.product-descriptions.show', $product->id) }}"
                                             class="btn btn-dark">
                                             <i class="fas fa-list"></i>
                                         </a>
                                     </div>
                                     <div class="flex-col mx-2">
-                                        <a href="{{ route('admin.product-descriptions.edit', $description->id) }}"
+                                        <a href="{{ route('admin.product-descriptions.edit', $product->id) }}"
                                             class="btn btn-secondary">
                                             <i class="fas fa-edit"></i>
                                         </a>
@@ -70,7 +69,7 @@
                                     <div class="flex-col mx-2">
                                         <button
                                             onclick="confirm('Are You Sure you want to delete this Product Description?')||event.stopImmediatePropagation()"
-                                            wire:click="delete({{ $description->id }})" class="btn btn-danger">
+                                            wire:click="delete({{ $product->id }})" class="btn btn-danger">
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </div>
