@@ -1,6 +1,6 @@
 <div>
     <div class="container">
-        <form class="d-none d-sm-inline-block form-inline m-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+        <form class="d-none d-sm-inline-block form-inline m-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" wire:submit.prevent="search">
             <div class="input-group">
                 <input type="text" wire:model="searchTerm" wire:keydown.enter="search"
                     class="form-control bg-light border-1 small" placeholder="Search for..." aria-label="Search"
