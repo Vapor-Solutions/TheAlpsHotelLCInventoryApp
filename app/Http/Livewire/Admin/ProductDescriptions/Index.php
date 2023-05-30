@@ -12,7 +12,7 @@ class Index extends Component
     use WithPagination;
     // public $product_descriptions;
 
-    public $products = [];
+    private $products = [];
     public $inventory_value, $actual_inventory;
     protected $paginationTheme  = 'bootstrap';
     public $searchTerm;
@@ -27,6 +27,11 @@ class Index extends Component
             $this->inventory_value += ($product->price * count($product->productItems));
             $this->actual_inventory += ($product->actual_value);
         }
+    }
+
+    public function getProducts()
+    {
+        return $this->products;
     }
 
     public function search()
