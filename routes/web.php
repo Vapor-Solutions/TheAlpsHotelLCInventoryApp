@@ -181,8 +181,8 @@ Route::prefix('admin')->middleware([
                 'order' => PurchaseOrder::find($id)
             ]);
 
-            $date = Carbon::parse(PurchaseOrder::find($id)->created_at)->toDateString();
-            return $pdf->download($date . '-LPO#' . $id . '.pdf');
+            // $date = Carbon::parse(PurchaseOrder::find($id)->created_at)->toDateString();
+            return $pdf->stream();
         })->name('admin.purchase-orders.order');
     });
 });
