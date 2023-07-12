@@ -71,7 +71,7 @@
         </tr>
         @foreach ($purchases as $purchase)
             <tr>
-                <td>{{ $purchase->purchase_date }}</td>
+                <td>{{ Carbon\Carbon::parse($purchase->purchase_date)->format('jS F, Y') }}</td>
                 <td>{{ $purchase->supplier->name }}</td>
                 <td>
                     <x-currency></x-currency>{{ number_format($purchase->total_cost) }}
@@ -84,11 +84,15 @@
         <tr class="header-row">
             <th>Date</th>
             <th>Department</th>
+            <th>Total Value</th>
         </tr>
         @foreach ($dispatches as $dispatch)
             <tr>
-                <td>{{ $dispatch->dispatch_date }}</td>
+                <td>{{ Carbon\Carbon::parse($dispatch->dispatch_date)->format('jS F, Y') }}</td>
                 <td>{{ $dispatch->department->title }}</td>
+                <td>
+                    <x-currency></x-currency>{{ number_format($dispatch->total_cost) }}
+                </td>
             </tr>
         @endforeach
     </table>
